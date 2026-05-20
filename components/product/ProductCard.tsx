@@ -16,6 +16,9 @@ export default function ProductCard({
 
   return (
     <div className="group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-[#0D0D15] border border-[#1A1A28] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-gold/40 hover:shadow-[0_0_30px_rgba(200,169,81,0.15)] hover:-translate-y-1 p-5">
+      {/* Premium Glass Reflection (Shine) */}
+      <div className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/20 to-transparent left-[-150%] skew-x-[-20deg] group-hover:left-[150%] transition-all duration-700 ease-in-out pointer-events-none z-50" />
+      
       <div className="mb-5 aspect-[4/3] w-full rounded-2xl bg-[#E8ECEF] flex items-center justify-center p-4 relative overflow-hidden shadow-[inset_0_2px_4px_rgba(255,255,255,1),inset_0_-10px_20px_rgba(0,0,0,0.05)] border border-white/10 group-hover:border-gold/30 transition-colors duration-400">
         {/* Overhead Studio Spotlight */}
         <div className="absolute top-0 inset-x-0 h-[120%] bg-[radial-gradient(ellipse_at_top,_#FFFFFF_40%,_transparent_80%)] pointer-events-none" />
