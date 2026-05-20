@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaxMiles — Premium Lubricants Catalog</title>
+<meta name="description" content="MaxMiles premium lubricant product catalog. Engineered lubrication solutions for all vehicle types.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ─────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg: #06060a;
+  --card: #0c0c12;
+  --card-hover: #10101a;
+  --gold: #C49D41;
+  --gold-18: rgba(196,157,65,0.18);
+  --gold-08: rgba(196,157,65,0.08);
+  --white: #ffffff;
+  --white-90: rgba(255,255,255,0.90);
+  --white-60: rgba(255,255,255,0.60);
+  --white-30: rgba(255,255,255,0.30);
+  --white-12: rgba(255,255,255,0.12);
+  --white-06: rgba(255,255,255,0.06);
+  --white-04: rgba(255,255,255,0.04);
+  --ff-display: 'Bebas Neue', 'Impact', sans-serif;
+  --ff-label: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --ff-body: 'Barlow', 'Helvetica Neue', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--ff-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ── NOISE TEXTURE OVERLAY ────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── LAYOUT CONTAINER ─────────────────────────── */
+.catalog {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 56px 28px 40px;
+}
+
+/* ── HEADER ────────────────────────────────────── */
+.header {
+  position: relative;
+  margin-bottom: 48px;
+  animation: fadeUp 0.7s ease-out both;
+}
+
+/* Corner bracket ornaments */
+.header::before,
+.header::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--gold-18);
+  border-style: solid;
+  top: -8px;
+}
+.header::before { left: -4px; border-width: 1px 0 0 1px; }
+.header::after  { right: -4px; border-width: 1px 1px 0 0; }
+
+/* Top row */
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-hex { width: 30px; height: 30px; flex-shrink: 0; }
+
+.logo-wordmark {
+  font-family: var(--ff-display);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--white-90);
+}
+
+.pill-badge {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-30);
+  border: 1px solid var(--white-06);
+  border-radius: 100px;
+  padding: 5px 14px;
+  background: var(--white-04);
+}
+
+/* Eyebrow */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.eyebrow-line {
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.eyebrow-text {
+  font-family: var(--ff-label);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Display title */
+.display-title {
+  font-family: var(--ff-display);
+  font-size: clamp(64px, 12vw, 104px);
+  line-height: 0.92;
+  letter-spacing: 2px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.display-title .gold { color: var(--gold); }
+
+/* Subtitle */
+.subtitle {
+  font-family: var(--ff-body);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white-30);
+  max-width: 420px;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+}
+
+/* Gold divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-18) 0%, var(--gold-08) 60%, transparent 100%);
+  margin-top: 36px;
+}
+
+/* ── PRODUCT GRID ─────────────────────────────── */
+.grid-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px;
+  background: var(--gold-18);
+  margin-bottom: 1px;
+  animation: fadeUp 0.7s 0.12s ease-out both;
+}
+
+.grid-top .card:first-child { grid-row: 1 / 3; }
+
+.grid-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--gold-18);
+  border-top: 1px solid var(--gold-18);
+  animation: fadeUp 0.7s 0.24s ease-out both;
+}
+
+/* ── CARD ──────────────────────────────────────── */
+.card {
+  background: var(--card);
+  padding: 28px 24px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent, var(--gold));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover { background: var(--card-hover); }
+.card:hover::before { opacity: 1; }
+
+/* Card number */
+.card-num {
+  font-family: var(--ff-display);
+  font-size: 36px;
+  color: var(--white);
+  opacity: 0.04;
+  line-height: 1;
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.card.large .card-num { font-size: 56px; top: 20px; left: 24px; }
+
+/* Image zone */
+.card-img-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+  min-height: 100px;
+  margin-bottom: 8px;
+}
+
+.card.large .card-img-zone { min-height: 180px; }
+
+.card-img-glow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent, var(--gold)) 0%, transparent 70%);
+  opacity: 0.06;
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.card.large .card-img-glow { width: 200px; height: 200px; filter: blur(40px); }
+
+.card-img-zone svg.bottle {
+  position: relative;
+  z-index: 1;
+  height: 120px;
+  width: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.card.large .card-img-zone svg.bottle { height: 180px; }
+
+.card:hover .card-img-zone svg.bottle {
+  transform: translateY(-4px);
+  filter: drop-shadow(0 10px 24px rgba(0,0,0,0.6));
+}
+
+/* Image zone bottom gradient line */
+.card-img-line {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-18), transparent);
+}
+
+/* Card tag */
+.card-tag {
+  font-family: var(--ff-label);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent, var(--gold));
+  margin-bottom: 4px;
+  margin-top: 12px;
+}
+
+/* Card title */
+.card-title {
+  font-family: var(--ff-display);
+  font-size: 22px;
+  letter-spacing: 1.5px;
+  color: var(--white-90);
+  margin-bottom: 6px;
+}
+
+.card.large .card-title { font-size: 30px; }
+
+/* Card description */
+.card-desc {
+  font-family: var(--ff-body);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--white-30);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* CTA */
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--ff-label);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent, var(--gold));
+  margin-top: auto;
+  transition: gap 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover .card-cta { gap: 8px; }
+
+.card-cta .arrow { transition: transform 0.3s ease; }
+.card:hover .card-cta .arrow { transform: translateX(2px); }
+
+/* ── STATS BAR ─────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  margin-top: 48px;
+  padding: 32px 0;
+  border-top: 1px solid var(--gold-18);
+  border-bottom: 1px solid var(--gold-18);
+  animation: fadeUp 0.7s 0.36s ease-out both;
+}
+
+.stat {
+  text-align: center;
+  position: relative;
+}
+
+.stat:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--gold-18);
+}
+
+.stat-num {
+  font-family: var(--ff-display);
+  font-size: 32px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: var(--ff-label);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white-30);
+}
+
+/* ── BOTTOM BAND ───────────────────────────────── */
+.bottom-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 36px;
+  animation: fadeUp 0.7s 0.48s ease-out both;
+}
+
+.bottom-brand {
+  font-family: var(--ff-display);
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--white);
+  opacity: 0.06;
+  text-transform: uppercase;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--white-06);
+}
+
+.dot.active { background: var(--gold); }
+
+/* ── ANIMATIONS ────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 680px) {
+  .catalog { padding: 36px 16px 28px; }
+  .display-title { font-size: clamp(48px, 14vw, 72px); }
+  .grid-top {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .grid-top .card:first-child { grid-row: auto; }
+  .grid-bottom { grid-template-columns: 1fr; }
+  .card.large .card-img-zone { min-height: 140px; }
+  .card.large .card-img-zone svg.bottle { height: 140px; }
+}
+</style>
+</head>
+<body>
+
+<div class="catalog">
+
+  <!-- ═══ HEADER ═══════════════════════════════ -->
+  <header class="header">
+    <div class="header-top">
+      <div class="logo-group">
+        <!-- Hexagon logo SVG -->
+        <svg class="logo-hex" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2L36.66 11v18L20 38 3.34 29V11L20 2z" stroke="#C49D41" stroke-width="1" fill="none" opacity="0.6"/>
+          <path d="M20 8L31 14v12L20 32 9 26V14L20 8z" fill="#C49D41" opacity="0.12"/>
+          <text x="20" y="24" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="14" fill="#C49D41" letter-spacing="1">M</text>
+        </svg>
+        <span class="logo-wordmark">MAXMILES</span>
+      </div>
+      <span class="pill-badge">UAE · 2024</span>
+    </div>
+
+    <div class="eyebrow">
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-text">Mahsulot Liniyasi</span>
+    </div>
+
+    <h1 class="display-title">
+      Bizning<br><span class="gold">MAHSULOTLAR</span>
+    </h1>
+
+    <p class="subtitle">Barcha turdagi transport uchun muhandislik darajasidagi moylash yechimlari</p>
+
+    <div class="divider"></div>
+  </header>
+
+  <!-- ═══ TOP GRID ═════════════════════════════ -->
+  <div class="grid-top">
+
+    <!-- CARD 01 — Ultra Line (Large) -->
+    <div class="card large" style="--accent:#4a9eff">
+      <span class="card-num">01</span>
+      <div class="card-img-zone">
+        <div class="card-img-glow"></div>
+        <svg class="bottle" viewBox="0 0 100 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cap -->
+          <rect x="35" y="2" width="30" height="18" rx="3" fill="#1a3a6e"/>
+          <rect x="37" y="4" width="26" height="4" rx="1" fill="#2a5090" opacity="0.6"/>
+          <!-- Neck -->
+          <rect x="39" y="20" width="22" height="14" rx="2" fill="#181828"/>
+          <rect x="38" y="30" width="24" height="4" rx="1" fill="#222238"/>
+          <!-- Body -->
+          <path d="M30 34 L38 34 L38 34 L30 50 L26 70 L26 200 Q26 212 38 212 L62 212 Q74 212 74 200 L74 70 L70 50 L62 34 L70 34 Z" fill="#14142a"/>
+          <!-- Body sheen left -->
+          <path d="M30 50 L26 70 L26 200 Q26 212 38 212 L42 212 L42 70 L36 50 Z" fill="#1a1a34" opacity="0.5"/>
+          <!-- Body sheen right -->
+          <path d="M70 50 L74 70 L74 130 L72 130 L68 50 Z" fill="rgba(255,255,255,0.03)"/>
+          <!-- Blue label stripe -->
+          <rect x="28" y="72" width="44" height="80" rx="2" fill="#4a9eff" opacity="0.15"/>
+          <rect x="28" y="72" width="44" height="2" fill="#4a9eff" opacity="0.6"/>
+          <rect x="28" y="150" width="44" height="2" fill="#4a9eff" opacity="0.6"/>
+          <!-- Label text -->
+          <text x="50" y="94" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="11" fill="#4a9eff" letter-spacing="2" opacity="0.9">MAXMILES</text>
+          <text x="50" y="116" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="16" fill="#ffffff" letter-spacing="1.5" opacity="0.95">ULTRA</text>
+          <text x="50" y="132" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="#4a9eff" letter-spacing="2" font-weight="600">5W-30</text>
+          <!-- Volume -->
+          <text x="50" y="190" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="rgba(255,255,255,0.2)" letter-spacing="1">4L</text>
+          <!-- Gold accent line on body -->
+          <rect x="32" y="168" width="36" height="0.5" fill="#C49D41" opacity="0.3"/>
+          <!-- Bottom edge highlight -->
+          <path d="M38 212 L62 212 Q74 212 74 200 L74 206 Q74 212 62 212 Z" fill="rgba(255,255,255,0.02)"/>
+        </svg>
+        <div class="card-img-line"></div>
+      </div>
+      <span class="card-tag">ULTRA LINE</span>
+      <h3 class="card-title">YENGIL AVTOMOBILLAR</h3>
+      <p class="card-desc">Zamonaviy benzin va dizel dvigatellar uchun yuqori samarali sintetik moy. API SP sertifikatlangan.</p>
+      <span class="card-cta">Batafsil <span class="arrow">→</span></span>
+    </div>
+
+    <!-- CARD 02 — Diesel Pro -->
+    <div class="card" style="--accent:#C49D41">
+      <span class="card-num">02</span>
+      <div class="card-img-zone">
+        <div class="card-img-glow"></div>
+        <svg class="bottle" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cap / Handle -->
+          <rect x="42" y="2" width="36" height="16" rx="3" fill="#2a2216"/>
+          <rect x="44" y="4" width="32" height="4" rx="1" fill="#3a3020" opacity="0.5"/>
+          <!-- Handle extension -->
+          <rect x="85" y="4" width="14" height="12" rx="3" fill="#1e1a10"/>
+          <rect x="88" y="6" width="8" height="8" rx="2" fill="none" stroke="#C49D41" stroke-width="0.5" opacity="0.3"/>
+          <!-- Neck -->
+          <rect x="46" y="18" width="28" height="10" rx="2" fill="#181818"/>
+          <!-- Body (wider canister) -->
+          <rect x="22" y="28" width="76" height="140" rx="5" fill="#121218"/>
+          <!-- Sheen left -->
+          <rect x="22" y="28" width="18" height="140" rx="5" fill="#181824" opacity="0.4"/>
+          <!-- Sheen right edge -->
+          <rect x="92" y="40" width="4" height="100" fill="rgba(255,255,255,0.02)" rx="1"/>
+          <!-- Gold label area -->
+          <rect x="28" y="52" width="64" height="70" rx="2" fill="#C49D41" opacity="0.1"/>
+          <rect x="28" y="52" width="64" height="1.5" fill="#C49D41" opacity="0.5"/>
+          <rect x="28" y="121" width="64" height="1.5" fill="#C49D41" opacity="0.5"/>
+          <!-- Label text -->
+          <text x="60" y="70" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="9" fill="#C49D41" letter-spacing="2" opacity="0.8">MAXMILES</text>
+          <text x="60" y="88" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="14" fill="#ffffff" letter-spacing="1" opacity="0.95">DIESEL PRO</text>
+          <text x="60" y="103" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="#C49D41" letter-spacing="2" font-weight="600">15W-40</text>
+          <!-- Volume / spec -->
+          <text x="60" y="150" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="7" fill="rgba(255,255,255,0.15)" letter-spacing="1">5L · CI-4</text>
+          <!-- Gold accent -->
+          <rect x="34" y="132" width="52" height="0.5" fill="#C49D41" opacity="0.2"/>
+        </svg>
+        <div class="card-img-line"></div>
+      </div>
+      <span class="card-tag">DIESEL PRO</span>
+      <h3 class="card-title">YUK MASHINALARI</h3>
+      <p class="card-desc">Og'ir yuklarga bardoshli dizel dvigatellari uchun mustahkam himoya.</p>
+      <span class="card-cta">Batafsil <span class="arrow">→</span></span>
+    </div>
+
+    <!-- CARD 03 — Mota -->
+    <div class="card" style="--accent:#e94f4f">
+      <span class="card-num">03</span>
+      <div class="card-img-zone">
+        <div class="card-img-glow"></div>
+        <svg class="bottle" viewBox="0 0 90 170" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cap (sporty angular) -->
+          <path d="M32 4 L58 4 L60 8 L62 18 L28 18 L30 8 Z" fill="#3a1515"/>
+          <rect x="34" y="5" width="22" height="3" rx="1" fill="#5a2020" opacity="0.5"/>
+          <!-- Neck -->
+          <rect x="34" y="18" width="22" height="10" rx="2" fill="#1a1018"/>
+          <!-- Body (dynamic sporty shape) -->
+          <path d="M24 28 L66 28 L70 44 L72 60 L72 148 Q72 158 62 158 L28 158 Q18 158 18 148 L18 60 L20 44 Z" fill="#141018"/>
+          <!-- Sheen -->
+          <path d="M24 28 L34 28 L26 44 L18 60 L18 148 Q18 158 28 158 L30 158 L30 60 L26 44 Z" fill="#1c1424" opacity="0.5"/>
+          <!-- Red label stripe -->
+          <rect x="22" y="50" width="46" height="62" rx="2" fill="#e94f4f" opacity="0.12"/>
+          <rect x="22" y="50" width="46" height="1.5" fill="#e94f4f" opacity="0.6"/>
+          <rect x="22" y="111" width="46" height="1.5" fill="#e94f4f" opacity="0.6"/>
+          <!-- Label text -->
+          <text x="45" y="66" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="8" fill="#e94f4f" letter-spacing="2" opacity="0.8">MAXMILES</text>
+          <text x="45" y="84" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="15" fill="#ffffff" letter-spacing="1" opacity="0.95">MOTA 4T</text>
+          <text x="45" y="98" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="#e94f4f" letter-spacing="2" font-weight="600">10W-40</text>
+          <!-- Volume -->
+          <text x="45" y="142" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="7" fill="rgba(255,255,255,0.15)" letter-spacing="1">1L · JASO MA2</text>
+          <!-- Gold trim -->
+          <rect x="26" y="124" width="38" height="0.5" fill="#C49D41" opacity="0.2"/>
+          <!-- Racing stripe accent -->
+          <rect x="64" y="50" width="2" height="62" fill="#e94f4f" opacity="0.08"/>
+        </svg>
+        <div class="card-img-line"></div>
+      </div>
+      <span class="card-tag">MOTA</span>
+      <h3 class="card-title">MOTOTSIKLLAR</h3>
+      <p class="card-desc">2 va 4 taktli mototsikl dvigatellari uchun sport formulali moy.</p>
+      <span class="card-cta">Batafsil <span class="arrow">→</span></span>
+    </div>
+
+  </div><!-- /grid-top -->
+
+  <!-- ═══ BOTTOM GRID ══════════════════════════ -->
+  <div class="grid-bottom">
+
+    <!-- CARD 04 — Geara -->
+    <div class="card" style="--accent:#f97316">
+      <span class="card-num">04</span>
+      <div class="card-img-zone">
+        <div class="card-img-glow"></div>
+        <svg class="bottle" viewBox="0 0 110 150" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cap -->
+          <rect x="38" y="4" width="34" height="14" rx="3" fill="#2a1a08"/>
+          <rect x="40" y="6" width="30" height="3" rx="1" fill="#3a2810" opacity="0.5"/>
+          <!-- Neck -->
+          <rect x="42" y="18" width="26" height="8" rx="2" fill="#181410"/>
+          <!-- Body (wide flat) -->
+          <rect x="16" y="26" width="78" height="112" rx="4" fill="#12110e"/>
+          <!-- Sheen -->
+          <rect x="16" y="26" width="16" height="112" rx="4" fill="#1a1814" opacity="0.4"/>
+          <rect x="88" y="36" width="4" height="80" fill="rgba(255,255,255,0.02)" rx="1"/>
+          <!-- Orange label -->
+          <rect x="22" y="44" width="66" height="56" rx="2" fill="#f97316" opacity="0.1"/>
+          <rect x="22" y="44" width="66" height="1.5" fill="#f97316" opacity="0.5"/>
+          <rect x="22" y="99" width="66" height="1.5" fill="#f97316" opacity="0.5"/>
+          <!-- Label text -->
+          <text x="55" y="58" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="8" fill="#f97316" letter-spacing="2" opacity="0.8">MAXMILES</text>
+          <text x="55" y="74" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#ffffff" letter-spacing="1" opacity="0.95">GEARA GL-5</text>
+          <text x="55" y="88" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="#f97316" letter-spacing="2" font-weight="600">75W-90</text>
+          <!-- Volume -->
+          <text x="55" y="124" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="7" fill="rgba(255,255,255,0.15)" letter-spacing="1">1L</text>
+          <rect x="28" y="110" width="54" height="0.5" fill="#C49D41" opacity="0.2"/>
+        </svg>
+        <div class="card-img-line"></div>
+      </div>
+      <span class="card-tag">GEARA</span>
+      <h3 class="card-title">UZATMALAR</h3>
+      <p class="card-desc">Yuqori yuklarga chidamli uzatma moylari va ATF suyuqliklari.</p>
+      <span class="card-cta">Batafsil <span class="arrow">→</span></span>
+    </div>
+
+    <!-- CARD 05 — Freeza -->
+    <div class="card" style="--accent:#06b6d4">
+      <span class="card-num">05</span>
+      <div class="card-img-zone">
+        <div class="card-img-glow"></div>
+        <svg class="bottle" viewBox="0 0 90 170" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cap -->
+          <rect x="30" y="4" width="30" height="14" rx="4" fill="#0a2a30"/>
+          <rect x="32" y="6" width="26" height="3" rx="1" fill="#104050" opacity="0.5"/>
+          <!-- Neck -->
+          <rect x="34" y="18" width="22" height="10" rx="3" fill="#0c1c20"/>
+          <!-- Body (rounded, translucent feel) -->
+          <rect x="18" y="28" width="54" height="128" rx="12" fill="#0c1820"/>
+          <!-- Translucent layer -->
+          <rect x="18" y="28" width="54" height="128" rx="12" fill="#06b6d4" opacity="0.04"/>
+          <!-- Inner fluid -->
+          <rect x="24" y="60" width="42" height="86" rx="8" fill="#06b6d4" opacity="0.06"/>
+          <!-- Sheen left -->
+          <rect x="18" y="28" width="12" height="128" rx="12" fill="rgba(255,255,255,0.02)"/>
+          <!-- Sheen right highlight -->
+          <rect x="66" y="40" width="3" height="80" rx="1" fill="rgba(255,255,255,0.03)"/>
+          <!-- Cyan label -->
+          <rect x="22" y="48" width="46" height="54" rx="2" fill="#06b6d4" opacity="0.1"/>
+          <rect x="22" y="48" width="46" height="1.5" fill="#06b6d4" opacity="0.5"/>
+          <rect x="22" y="101" width="46" height="1.5" fill="#06b6d4" opacity="0.5"/>
+          <!-- Label text -->
+          <text x="45" y="62" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="7" fill="#06b6d4" letter-spacing="2" opacity="0.8">MAXMILES</text>
+          <text x="45" y="78" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="12" fill="#ffffff" letter-spacing="1" opacity="0.95">FREEZA</text>
+          <text x="45" y="92" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="7" fill="#06b6d4" letter-spacing="1.5" font-weight="600">ANTIFREEZE</text>
+          <!-- Volume -->
+          <text x="45" y="136" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="7" fill="rgba(255,255,255,0.15)" letter-spacing="1">5L · G12+</text>
+          <rect x="28" y="116" width="34" height="0.5" fill="#C49D41" opacity="0.2"/>
+        </svg>
+        <div class="card-img-line"></div>
+      </div>
+      <span class="card-tag">FREEZA</span>
+      <h3 class="card-title">SOVUTUVCHILAR</h3>
+      <p class="card-desc">Barcha transport turlari uchun yuqori sifatli antifriz va sovutish suyuqliklari.</p>
+      <span class="card-cta">Batafsil <span class="arrow">→</span></span>
+    </div>
+
+    <!-- CARD 06 — Forsa -->
+    <div class="card" style="--accent:#a855f7">
+      <span class="card-num">06</span>
+      <div class="card-img-zone">
+        <div class="card-img-glow"></div>
+        <svg class="bottle" viewBox="0 0 80 150" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cap (precise small) -->
+          <rect x="28" y="4" width="24" height="12" rx="2" fill="#1a102a"/>
+          <rect x="30" y="5" width="20" height="3" rx="1" fill="#2a1840" opacity="0.5"/>
+          <!-- Neck -->
+          <rect x="30" y="16" width="20" height="8" rx="2" fill="#140e20"/>
+          <!-- Body (compact square) -->
+          <rect x="14" y="24" width="52" height="110" rx="3" fill="#100e18"/>
+          <!-- Sheen -->
+          <rect x="14" y="24" width="12" height="110" rx="3" fill="#1a1428" opacity="0.4"/>
+          <rect x="62" y="34" width="3" height="70" fill="rgba(255,255,255,0.02)" rx="1"/>
+          <!-- Purple label -->
+          <rect x="18" y="40" width="44" height="52" rx="2" fill="#a855f7" opacity="0.1"/>
+          <rect x="18" y="40" width="44" height="1.5" fill="#a855f7" opacity="0.5"/>
+          <rect x="18" y="91" width="44" height="1.5" fill="#a855f7" opacity="0.5"/>
+          <!-- Label text -->
+          <text x="40" y="53" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="7" fill="#a855f7" letter-spacing="2" opacity="0.8">MAXMILES</text>
+          <text x="40" y="69" text-anchor="middle" font-family="'Bebas Neue', sans-serif" font-size="13" fill="#ffffff" letter-spacing="1" opacity="0.95">FORSA</text>
+          <text x="40" y="82" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="#a855f7" letter-spacing="2" font-weight="600">DOT 4</text>
+          <!-- Technical markings -->
+          <rect x="22" y="102" width="16" height="4" rx="1" fill="rgba(255,255,255,0.03)"/>
+          <text x="30" y="105" text-anchor="middle" font-family="'Barlow', sans-serif" font-size="3.5" fill="rgba(255,255,255,0.12)">MIN</text>
+          <rect x="22" y="112" width="16" height="4" rx="1" fill="rgba(255,255,255,0.03)"/>
+          <text x="30" y="115" text-anchor="middle" font-family="'Barlow', sans-serif" font-size="3.5" fill="rgba(255,255,255,0.12)">MAX</text>
+          <!-- Volume -->
+          <text x="40" y="126" text-anchor="middle" font-family="'Barlow Condensed', sans-serif" font-size="6" fill="rgba(255,255,255,0.15)" letter-spacing="1">0.5L</text>
+          <rect x="22" y="96" width="36" height="0.5" fill="#C49D41" opacity="0.2"/>
+        </svg>
+        <div class="card-img-line"></div>
+      </div>
+      <span class="card-tag">FORSA</span>
+      <h3 class="card-title">TORMOZ SUYUQLIGI</h3>
+      <p class="card-desc">Xavfsizlik uchun yuqori haroratga chidamli tormoz suyuqliklari.</p>
+      <span class="card-cta">Batafsil <span class="arrow">→</span></span>
+    </div>
+
+  </div><!-- /grid-bottom -->
+
+  <!-- ═══ STATS BAR ════════════════════════════ -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Mahsulot liniyasi</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">UAE</div>
+      <div class="stat-label">Ishlab chiqarish</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">DE</div>
+      <div class="stat-label">Nemis muhandisligi</div>
+    </div>
+  </div>
+
+  <!-- ═══ BOTTOM BAND ══════════════════════════ -->
+  <div class="bottom-band">
+    <span class="bottom-brand">MaxMiles Premium Lubricants</span>
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+</div><!-- /catalog -->
+
+</body>
+</html>

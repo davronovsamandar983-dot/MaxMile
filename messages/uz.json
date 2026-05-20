@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "products": "Mahsulotlar",
+    "contact": "Aloqa"
+  },
+  "home": {
+    "hero": {
+      "title": "Chidamlilik uchun yaratilgan",
+      "subtitle": "Har bir dvigatel uchun premium moylar",
+      "description": "MaxMiles aniq muhandislik bilan ishlab chiqilgan yuqori samarali moylarni yetkazib beradi. Yengil avtomobillardan ogʻir yuk mashinalarigacha — mahsulotlarimiz maksimal himoya va samaradorlikni taʼminlaydi.",
+      "cta": "Mahsulotlarni koʻrish"
+    },
+    "categories": {
+      "title": "Mahsulot turlari",
+      "subtitle": "Moylar va suyuqliklarning toʻliq assortimenti"
+    },
+    "featured": {
+      "title": "Tavsiya etilgan mahsulotlar",
+      "subtitle": "Mutaxassislar tanlovi"
+    },
+    "about": {
+      "title": "MaxMiles haqida",
+      "subtitle": "Aniqlik. Samaradorlik. Himoya.",
+      "description": "BAA, Ras al-Xaymada joylashgan MaxMiles xalqaro sifat standartlariga mos va undan ustun boʻlgan jahon darajasidagi moylarni yetkazib berishga intiladi.",
+      "badge1": "Nemis muhandisligi",
+      "badge2": "BAA sifati",
+      "badge3": "Jahon standartlari"
+    }
+  },
+  "product": {
+    "orderTelegram": "Telegram orqali buyurtma berish",
+    "inStock": "Mavjud",
+    "outOfStock": "Mavjud emas",
+    "selectVolume": "Hajmni tanlang",
+    "properties": "Xususiyatlar",
+    "description": "Tavsif",
+    "volumes": "Mavjud hajmlar",
+    "viewDetails": "Batafsil",
+    "allProducts": "Barcha mahsulotlar",
+    "filterByCategory": "Kategoriya boʻyicha filtrlash",
+    "allCategories": "Barcha kategoriyalar",
+    "noProducts": "Mahsulotlar topilmadi",
+    "backToProducts": "Mahsulotlarga qaytish"
+  },
+  "footer": {
+    "address": "WFZO3-20, Shed No.03-Al Hamra FZ, RAK, BAA",
+    "rights": "Barcha huquqlar himoyalangan",
+    "tagline": "Chidamlilik uchun yaratilgan"
+  }
+}

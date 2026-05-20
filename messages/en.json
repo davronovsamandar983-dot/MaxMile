@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "contact": "Contact"
+  },
+  "home": {
+    "hero": {
+      "title": "Engineered to Endure",
+      "subtitle": "Premium lubricants for every engine",
+      "description": "MaxMiles delivers high-performance lubricants crafted with precision engineering. From passenger cars to heavy-duty trucks, our products ensure peak protection and efficiency.",
+      "cta": "View Products"
+    },
+    "categories": {
+      "title": "Our Product Lines",
+      "subtitle": "Complete range of lubricants and fluids"
+    },
+    "featured": {
+      "title": "Featured Products",
+      "subtitle": "Top-rated by professionals"
+    },
+    "about": {
+      "title": "About MaxMiles",
+      "subtitle": "Precision. Performance. Protection.",
+      "description": "Based in Ras Al Khaimah, UAE, MaxMiles is committed to delivering world-class lubricants that meet and exceed international quality standards. Our product range covers every automotive and industrial need.",
+      "badge1": "German Engineering",
+      "badge2": "UAE Quality",
+      "badge3": "Global Standards"
+    }
+  },
+  "product": {
+    "orderTelegram": "Order via Telegram",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "selectVolume": "Select volume",
+    "properties": "Properties",
+    "description": "Description",
+    "volumes": "Available Sizes",
+    "viewDetails": "View Details",
+    "allProducts": "All Products",
+    "filterByCategory": "Filter by category",
+    "allCategories": "All Categories",
+    "noProducts": "No products found",
+    "backToProducts": "Back to Products"
+  },
+  "footer": {
+    "address": "WFZO3-20, Shed No.03-Al Hamra FZ, RAK, UAE",
+    "rights": "All rights reserved",
+    "tagline": "Engineered to Endure"
+  }
+}
