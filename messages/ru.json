@@ -5,6 +5,8 @@
     "contact": "Контакты"
   },
   "home": {
+    "heading_part1": "Создано",
+    "heading_part2": "выдерживать",
     "hero": {
       "title": "Создано, чтобы служить",
       "subtitle": "Премиальные смазочные материалы для каждого двигателя",
@@ -47,5 +49,44 @@
     "address": "WFZO3-20, Shed No.03-Al Hamra FZ, RAK, ОАЭ",
     "rights": "Все права защищены",
     "tagline": "Создано, чтобы служить"
+  },
+  "admin": {
+    "title": "Панель администратора",
+    "subtitle": "Управляйте своим бизнесом MaxMiles.",
+    "tabs": {
+      "orders": "Заказы",
+      "products": "Товары"
+    },
+    "orders": {
+      "addBtn": "+ Новый заказ",
+      "id": "ID заказа",
+      "date": "Дата",
+      "customer": "Клиент",
+      "product": "Товар",
+      "qty": "Кол-во",
+      "status": "Статус",
+      "note": "Примечание",
+      "noOrders": "Заказы не найдены."
+    },
+    "products": {
+      "addBtn": "+ Добавить товар",
+      "product": "Товар",
+      "category": "Категория",
+      "saeGrade": "Класс SAE",
+      "price": "Цена (UZS)",
+      "stock": "Наличие",
+      "actions": "Действия",
+      "noProducts": "Товары не найдены.",
+      "edit": "Изменить",
+      "delete": "Удалить",
+      "inStock": "В наличии",
+      "outOfStock": "Нет в наличии"
+    },
+    "status": {
+      "new": "Новый",
+      "confirmed": "Подтвержден",
+      "delivered": "Доставлен",
+      "cancelled": "Отменен"
+    }
   }
 }

@@ -56,10 +56,10 @@ export default async function HomePage() {
           {/* Title */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1] font-[var(--font-display)]">
             <span className="animate-fade-in-up block text-white drop-shadow-2xl">
-              Engineered
+              {t('heading_part1')}
             </span>
             <span className="animate-fade-in-up-delay-1 block text-gradient-gold drop-shadow-2xl mt-2">
-              to Endure
+              {t('heading_part2')}
             </span>
           </h1>
 
@@ -76,12 +76,14 @@ export default async function HomePage() {
             >
               Explore Products
             </Link>
-            <Link
-              href="/technology"
+            <a
+              href="https://t.me/YOUR_TELEGRAM_USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 rounded-full bg-white/5 backdrop-blur-md text-white border border-white/10 font-bold tracking-widest text-xs uppercase hover:bg-white/10 hover:border-white/20 transition-all duration-400 hover:scale-105 active:scale-95"
             >
               Our Technology
-            </Link>
+            </a>
           </div>
         </div>
       </section>

@@ -5,6 +5,8 @@
     "contact": "Contact"
   },
   "home": {
+    "heading_part1": "Engineered",
+    "heading_part2": "to Endure",
     "hero": {
       "title": "Engineered to Endure",
       "subtitle": "Premium lubricants for every engine",
@@ -47,5 +49,44 @@
     "address": "WFZO3-20, Shed No.03-Al Hamra FZ, RAK, UAE",
     "rights": "All rights reserved",
     "tagline": "Engineered to Endure"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "subtitle": "Manage your MaxMiles business.",
+    "tabs": {
+      "orders": "Orders",
+      "products": "Products"
+    },
+    "orders": {
+      "addBtn": "+ Add New Order",
+      "id": "Order ID",
+      "date": "Date",
+      "customer": "Customer",
+      "product": "Product",
+      "qty": "Qty",
+      "status": "Status",
+      "note": "Note",
+      "noOrders": "No orders found."
+    },
+    "products": {
+      "addBtn": "+ Add Product",
+      "product": "Product",
+      "category": "Category",
+      "saeGrade": "SAE Grade",
+      "price": "Price (UZS)",
+      "stock": "Stock",
+      "actions": "Actions",
+      "noProducts": "No products found.",
+      "edit": "Edit",
+      "delete": "Delete",
+      "inStock": "In Stock",
+      "outOfStock": "Out of Stock"
+    },
+    "status": {
+      "new": "New",
+      "confirmed": "Confirmed",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    }
   }
 }

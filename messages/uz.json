@@ -5,6 +5,8 @@
     "contact": "Aloqa"
   },
   "home": {
+    "heading_part1": "Bardoshli qilib",
+    "heading_part2": "yaratilgan",
     "hero": {
       "title": "Chidamlilik uchun yaratilgan",
       "subtitle": "Har bir dvigatel uchun premium moylar",
@@ -47,5 +49,44 @@
     "address": "WFZO3-20, Shed No.03-Al Hamra FZ, RAK, BAA",
     "rights": "Barcha huquqlar himoyalangan",
     "tagline": "Chidamlilik uchun yaratilgan"
+  },
+  "admin": {
+    "title": "Admin Paneli",
+    "subtitle": "MaxMiles biznesingizni boshqaring.",
+    "tabs": {
+      "orders": "Buyurtmalar",
+      "products": "Mahsulotlar"
+    },
+    "orders": {
+      "addBtn": "+ Yangi buyurtma",
+      "id": "Buyurtma ID",
+      "date": "Sana",
+      "customer": "Mijoz",
+      "product": "Mahsulot",
+      "qty": "Miqdor",
+      "status": "Holat",
+      "note": "Eslatma",
+      "noOrders": "Buyurtmalar topilmadi."
+    },
+    "products": {
+      "addBtn": "+ Mahsulot qo'shish",
+      "product": "Mahsulot",
+      "category": "Kategoriya",
+      "saeGrade": "SAE Klassi",
+      "price": "Narxi (UZS)",
+      "stock": "Holati",
+      "actions": "Harakatlar",
+      "noProducts": "Mahsulotlar topilmadi.",
+      "edit": "Tahrirlash",
+      "delete": "O'chirish",
+      "inStock": "Mavjud",
+      "outOfStock": "Tugagan"
+    },
+    "status": {
+      "new": "Yangi",
+      "confirmed": "Tasdiqlangan",
+      "delivered": "Yetkazilgan",
+      "cancelled": "Bekor qilingan"
+    }
   }
 }
