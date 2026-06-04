@@ -14,6 +14,14 @@ export const metadata: Metadata = {
   description: 'Premium MaxMiles motor oils and lubricants guarantee the ultimate protection for your vehicle. Formulated with state-of-the-art technologies.',
   keywords: 'motor oil, lubricants, premium oil, engine protection, car oil, transmission oil',
   authors: [{ name: 'MaxMiles' }],
+  icons: {
+    icon: [
+      { url: '/logo.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo.png', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({
