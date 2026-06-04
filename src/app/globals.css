@@ -1,26 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #C8A951;      /* Luxury Gold */
+  --primary-hover: #B09340;
+  --bg-dark: #07070A;       /* Ultra dark premium bg */
+  --bg-card: #0F0F16;       /* Card dark bg */
+  --bg-card-hover: #151520;
+  --text-primary: #FFFFFF;
+  --text-secondary: #9CA3AF;
+  --border-color: #1F1F2E;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Glassmorphism scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A3A;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFE89C 0%, #C8A951 50%, #8E702A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glass card styling */
+.glass-card {
+  background: rgba(15, 15, 22, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(200, 169, 81, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(200, 169, 81, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(200, 169, 81, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Custom premium slider dots */
+.slider-dot {
+  width: 12px;
+  height: 4px;
+  border-radius: 2px;
+  background: #3F3F46;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  width: 24px;
+  background: var(--primary);
+}
+
+/* Custom floating animation */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
 }
