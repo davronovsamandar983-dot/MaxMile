@@ -136,13 +136,13 @@ function ProductsContent() {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-24 space-y-4">
             <div className="w-12 h-12 border-4 border-[#C8A951] border-t-transparent rounded-full animate-spin"></div>
-            <span className="text-gray-500 uppercase tracking-widest text-xs font-semibold">Yuklanmoqda...</span>
+            <span className="text-gray-500 uppercase tracking-widest text-xs font-semibold">{t.products.loading}</span>
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-24 glass-card rounded-3xl border border-white/5">
             <span className="text-5xl">🔍</span>
-            <h3 className="text-xl font-bold text-white mt-4 uppercase tracking-wider">Mahsulotlar topilmadi</h3>
-            <p className="text-gray-500 text-sm mt-2">Boshqa kalit so\'zlar bilan qidirib ko\'ring</p>
+            <h3 className="text-xl font-bold text-white mt-4 uppercase tracking-wider">{t.products.notFound}</h3>
+            <p className="text-gray-500 text-sm mt-2">{t.products.notFoundDesc}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -220,7 +220,7 @@ function ProductsContent() {
                     <div className="mt-4 pt-4 border-t border-white/5">
                       {/* Volumes */}
                       <div className="mb-4">
-                        <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider block mb-1.5">Hajmlar:</span>
+                        <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider block mb-1.5">{t.products.volumes}:</span>
                         <div className="flex flex-wrap gap-1.5">
                           {product.volumes.map((vol) => (
                             <span key={vol} className="text-[10px] px-2 py-0.5 rounded bg-white/5 border border-white/5 text-gray-400 font-medium uppercase">
@@ -258,7 +258,7 @@ export default function ProductsPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-[#07070A] flex flex-col items-center justify-center space-y-4">
         <div className="w-12 h-12 border-4 border-[#C8A951] border-t-transparent rounded-full animate-spin"></div>
-        <span className="text-gray-500 uppercase tracking-widest text-xs font-semibold">Yuklanmoqda...</span>
+        <span className="text-gray-500 uppercase tracking-widest text-xs font-semibold">Loading...</span>
       </div>
     }>
       <ProductsContent />

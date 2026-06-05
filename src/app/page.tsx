@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '../context/LanguageContext';
 import { CATEGORIES } from '../lib/supabase';
-import { ArrowRight, Shield, Zap, Sparkles, Award, Star, Compass, AlertCircle } from 'lucide-react';
+import { ArrowRight, Shield, Zap, Sparkles, Award, Star, Compass, AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const heroSlides = [
   {
@@ -82,6 +83,39 @@ const heroSlides = [
 export default function HomePage() {
   const { t, locale } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Contact form state
+  const formRef = useRef<HTMLFormElement>(null);
+  const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('loading');
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          from_name: formData.name,
+          phone: formData.phone,
+          message: formData.message,
+          reply_to: '',
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+      setFormStatus('success');
+      setFormData({ name: '', phone: '', message: '' });
+      setTimeout(() => setFormStatus('idle'), 5000);
+    } catch {
+      setFormStatus('error');
+      setTimeout(() => setFormStatus('idle'), 4000);
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -290,7 +324,7 @@ export default function HomePage() {
                   <span className="text-lg font-bold text-white tracking-wide uppercase">MAXMILES</span>
                 </div>
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  ISO 9001:2015 xalqaro talablari va eng yuqori standartlar asosida sertifikatlangan.
+                  {t.contact.certText}
                 </p>
               </div>
             </div>
@@ -337,9 +371,9 @@ export default function HomePage() {
             {/* Map/Location Info */}
             <div className="glass-card p-8 sm:p-12 rounded-3xl border border-white/5 flex flex-col justify-between">
               <div>
-                <h3 className="text-3xl font-bold text-white mb-6 uppercase tracking-wider">Biz bilan bog\'laning</h3>
+                <h3 className="text-3xl font-bold text-white mb-6 uppercase tracking-wider">{t.contact.title}</h3>
                 <p className="text-gray-400 text-sm mb-8 leading-relaxed">
-                  Mahsulotlar haqida savollaringiz bormi? Yoki hamkorlik taklif qilmoqchimisiz? Bizning maslahatchilarimiz sizga yordam berishga doim tayyor.
+                  {t.contact.desc}
                 </p>
 
                 <div className="space-y-6">
@@ -348,7 +382,7 @@ export default function HomePage() {
                       <Shield className="w-5 h-5 text-[#C8A951]" />
                     </div>
                     <div>
-                      <span className="text-xs text-gray-500 uppercase tracking-wider block">Kompaniya</span>
+                      <span className="text-xs text-gray-500 uppercase tracking-wider block">{t.contact.companyLabel}</span>
                       <span className="text-sm font-semibold text-white">MaxMiles Lubricants Co. Ltd.</span>
                     </div>
                   </div>
@@ -357,8 +391,8 @@ export default function HomePage() {
                       <Star className="w-5 h-5 text-[#C8A951]" />
                     </div>
                     <div>
-                      <span className="text-xs text-gray-500 uppercase tracking-wider block">Ish vaqti</span>
-                      <span className="text-sm font-semibold text-white">Dushanba - Shanba, 09:00 - 18:00</span>
+                      <span className="text-xs text-gray-500 uppercase tracking-wider block">{t.contact.workingHoursLabel}</span>
+                      <span className="text-sm font-semibold text-white">{t.contact.workingHours}</span>
                     </div>
                   </div>
                 </div>
@@ -375,8 +409,8 @@ export default function HomePage() {
                   <div className="flex items-center space-x-3">
                     <span className="text-2xl">🤖</span>
                     <div>
-                      <span className="text-sm font-bold text-white block">Telegram Bot orqali buyurtma</span>
-                      <span className="text-xs text-gray-500">Mijozlar uchun 24/7 faol buyurtma xizmati</span>
+                      <span className="text-sm font-bold text-white block">{t.contact.telegramTitle}</span>
+                      <span className="text-xs text-gray-500">{t.contact.telegramSubtitle}</span>
                     </div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-[#C8A951] transform group-hover:translate-x-1 transition-transform" />
@@ -386,42 +420,78 @@ export default function HomePage() {
 
             {/* Quick Contact Form */}
             <div className="glass-card p-8 sm:p-12 rounded-3xl border border-white/5 relative overflow-hidden">
-              <h3 className="text-3xl font-bold text-white mb-6 uppercase tracking-wider">Xabar qoldiring</h3>
-              <form onSubmit={(e) => { e.preventDefault(); alert('Xabaringiz qabul qilindi. Tez orada siz bilan bog\'lanamiz!'); }} className="space-y-6">
-                <div>
-                  <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Ismingiz</label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white focus:outline-none focus:border-[#C8A951] transition-colors text-sm"
-                    placeholder="Ismingizni kiriting"
-                  />
+              <h3 className="text-3xl font-bold text-white mb-6 uppercase tracking-wider">{t.contact.formTitle}</h3>
+
+              {formStatus === 'success' ? (
+                <div className="flex flex-col items-center justify-center py-16 space-y-4 text-center">
+                  <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center border border-green-500/30">
+                    <CheckCircle className="w-8 h-8 text-green-400" />
+                  </div>
+                  <h4 className="text-xl font-bold text-white uppercase tracking-wider">{t.contact.formSuccessTitle}</h4>
+                  <p className="text-gray-400 text-sm">{t.contact.formSuccessDesc}</p>
                 </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Telefon raqamingiz</label>
-                  <input
-                    type="tel"
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white focus:outline-none focus:border-[#C8A951] transition-colors text-sm"
-                    placeholder="+998 (90) 123-45-67"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Xabaringiz</label>
-                  <textarea
-                    rows={4}
-                    required
-                    className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white focus:outline-none focus:border-[#C8A951] transition-colors text-sm"
-                    placeholder="Sizni qiziqtirgan savolni yozing"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-[#C8A951] to-[#E5C367] hover:from-[#B09340] hover:to-[#C8A951] text-black font-bold uppercase tracking-wider rounded-lg transition-all duration-300 shadow-lg text-sm"
-                >
-                  Xabarni yuborish
-                </button>
-              </form>
+              ) : (
+                <form ref={formRef} onSubmit={handleFormSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">{t.contact.formNameLabel}</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleFormChange}
+                      required
+                      disabled={formStatus === 'loading'}
+                      className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white focus:outline-none focus:border-[#C8A951] transition-colors text-sm disabled:opacity-50"
+                      placeholder={t.contact.formNamePlaceholder}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">{t.contact.formPhoneLabel}</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleFormChange}
+                      required
+                      disabled={formStatus === 'loading'}
+                      className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white focus:outline-none focus:border-[#C8A951] transition-colors text-sm disabled:opacity-50"
+                      placeholder={t.contact.formPhonePlaceholder}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">{t.contact.formMessageLabel}</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleFormChange}
+                      rows={4}
+                      required
+                      disabled={formStatus === 'loading'}
+                      className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/10 text-white focus:outline-none focus:border-[#C8A951] transition-colors text-sm disabled:opacity-50"
+                      placeholder={t.contact.formMessagePlaceholder}
+                    ></textarea>
+                  </div>
+
+                  {formStatus === 'error' && (
+                    <p className="text-red-400 text-xs flex items-center space-x-2">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{t.contact.formError}</span>
+                    </p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={formStatus === 'loading'}
+                    className="w-full py-4 bg-gradient-to-r from-[#C8A951] to-[#E5C367] hover:from-[#B09340] hover:to-[#C8A951] text-black font-bold uppercase tracking-wider rounded-lg transition-all duration-300 shadow-lg text-sm disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  >
+                    {formStatus === 'loading' ? (
+                      <><Loader2 className="w-4 h-4 animate-spin" /><span>{t.contact.formSubmitting}</span></>
+                    ) : (
+                      <span>{t.contact.formSubmit}</span>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
