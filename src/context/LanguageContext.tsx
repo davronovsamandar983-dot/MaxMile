@@ -28,6 +28,13 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, []);
 
+  // The server renders <html lang="uz"> because that is the default locale.
+  // Once the real choice is known, correct it — otherwise a screen reader
+  // announces Russian and English copy with Uzbek pronunciation rules.
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
     localStorage.setItem('maxmiles-locale', newLocale);
