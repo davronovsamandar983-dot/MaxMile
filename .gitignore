@@ -40,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# iCloud sinxronlamaydigan kutubxonalar (node_modules -> .deps.nosync/node_modules)
+.deps.nosync/
+
+# Claude Code mahalliy sozlamalari
+.claude/

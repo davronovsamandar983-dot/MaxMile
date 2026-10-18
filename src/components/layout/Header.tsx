@@ -1,188 +1,163 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useLanguage } from '../../context/LanguageContext';
-import { Locale } from '../../lib/translations';
-import { Menu, X, ChevronDown, Globe, MessageSquare } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Send, Phone } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { LOCALES } from '@/lib/translations';
+import { TELEGRAM_URL, PHONE, PHONE_DISPLAY } from '@/lib/site';
 
 export const Header: React.FC = () => {
   const { locale, t, setLocale } = useLanguage();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  // Menyu holati sahifa manziliga bog'langan: sahifa almashganda o'zi yopiladi
+  const [menuPath, setMenuPath] = useState<string | null>(null);
+  const [langPath, setLangPath] = useState<string | null>(null);
+  const open = menuPath === pathname;
+  const langOpen = langPath === pathname;
+  const setOpen = (v: boolean | ((prev: boolean) => boolean)) => setMenuPath((cur) => ((typeof v === 'function' ? v(cur === pathname) : v) ? pathname : null));
+  const setLangOpen = (v: boolean | ((prev: boolean) => boolean)) => setLangPath((cur) => ((typeof v === 'function' ? v(cur === pathname) : v) ? pathname : null));
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
-  const navItems = [
-    { name: t.nav.home, path: '/' },
-    { name: t.nav.products, path: '/products' },
-    { name: t.nav.about, path: '/#about' },
-    { name: t.nav.contact, path: '/#contact' },
+  const nav = [
+    { name: t.nav.home, href: '/' },
+    { name: t.nav.products, href: '/products' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.contact, href: '/contact' },
   ];
 
-  const languages: { key: Locale; label: string }[] = [
-    { key: 'uz', label: 'O\'zbekcha' },
-    { key: 'ru', label: 'Русский' },
-    { key: 'en', label: 'English' }
-  ];
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+  const solid = scrolled || open || pathname !== '/';
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#07070A]/95 backdrop-blur-md py-4 border-b border-white/5 shadow-lg' : 'bg-transparent py-6'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <span className="text-2xl font-bold tracking-widest text-white group-hover:text-[#C8A951] transition-colors">
-              MAX<span className="text-[#C8A951]">MILES</span>
-            </span>
-            <span className="text-xs bg-[#C8A951]/10 text-[#C8A951] px-2 py-0.5 rounded font-medium border border-[#C8A951]/20">
-              LUBRICANTS
-            </span>
-          </Link>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        solid ? 'border-b border-white/5 bg-ink/85 py-3 shadow-[0_10px_40px_-20px_rgba(0,0,0,.8)] backdrop-blur-xl' : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="container-x flex items-center justify-between gap-6">
+        {/* Logo */}
+        <Link href="/" className="group flex shrink-0 items-center gap-3" aria-label="MaxMiles Lubricants">
+          <Image src="/logo-wordmark.png" alt="MaxMiles" width={635} height={131} priority className="h-6 w-auto shrink-0 sm:h-8" />
+          <span className="hidden rounded border border-gold/25 bg-gold/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.2em] text-gold sm:inline-block">
+            LUBRICANTS
+          </span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const isActive = pathname === item.path || (item.path !== '/' && pathname.startsWith(item.path));
-              return (
-                <Link
-                  key={item.name}
-                  href={item.path}
-                  className={`text-sm font-medium tracking-wider uppercase transition-all duration-300 hover:text-[#C8A951] ${isActive ? 'text-[#C8A951]' : 'text-gray-300'}`}
-                >
-                  {item.name}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Language and Action Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center space-x-1.5 text-sm font-medium text-gray-300 hover:text-[#C8A951] transition-colors bg-white/5 px-3 py-1.5 rounded-lg border border-white/5"
-              >
-                <Globe className="w-4 h-4 text-[#C8A951]" />
-                <span className="uppercase">{locale}</span>
-                <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {langOpen && (
-                <>
-                  <div className="fixed inset-0 z-10" onClick={() => setLangOpen(false)}></div>
-                  <div className="absolute right-0 mt-2 w-40 bg-[#0F0F16] rounded-xl border border-white/10 shadow-2xl z-20 py-1.5 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.key}
-                        onClick={() => {
-                          setLocale(lang.key);
-                          setLangOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 text-sm transition-colors hover:bg-white/5 flex items-center justify-between ${locale === lang.key ? 'text-[#C8A951] font-semibold' : 'text-gray-300'}`}
-                      >
-                        {lang.label}
-                        {locale === lang.key && <span className="w-1.5 h-1.5 bg-[#C8A951] rounded-full"></span>}
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Telegram Order Action */}
-            <a
-              href="https://t.me/maxmile_oil_bot"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-[#C8A951] to-[#E5C367] hover:from-[#B09340] hover:to-[#C8A951] text-black px-4 py-2.5 rounded-lg transition-all duration-300 shadow-lg shadow-[#C8A951]/10 font-bold"
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
+          {nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`relative text-sm font-medium tracking-wide transition-colors hover:text-gold ${isActive(item.href) ? 'text-gold' : 'text-white/80'}`}
             >
-              <MessageSquare className="w-4 h-4 text-black" />
-              <span>{t.products.order}</span>
-            </a>
-          </div>
+              {item.name}
+              {isActive(item.href) && <span className="absolute -bottom-2 left-0 h-px w-full bg-gold" />}
+            </Link>
+          ))}
+        </nav>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-3">
-            {/* Language Selection Quick Switcher for Mobile */}
-            <div className="relative">
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 border border-white/5"
-              >
-                <Globe className="w-4 h-4 text-[#C8A951]" />
-              </button>
-              {langOpen && (
-                <>
-                  <div className="fixed inset-0 z-10" onClick={() => setLangOpen(false)}></div>
-                  <div className="absolute right-0 mt-2 w-32 bg-[#0F0F16] rounded-xl border border-white/10 shadow-2xl z-20 py-1.5 overflow-hidden">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.key}
-                        onClick={() => {
-                          setLocale(lang.key);
-                          setLangOpen(false);
-                        }}
-                        className={`w-full text-left px-3 py-1.5 text-xs ${locale === lang.key ? 'text-[#C8A951] font-bold' : 'text-gray-300'}`}
-                      >
-                        {lang.label}
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-
+        {/* Right actions */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Language */}
+          <div className="relative">
             <button
-              onClick={toggleMenu}
-              className="text-gray-400 hover:text-white focus:outline-none p-1.5 bg-white/5 rounded-lg border border-white/5"
+              onClick={() => setLangOpen((v) => !v)}
+              className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-white/85 transition-colors hover:border-gold/40 hover:text-gold"
+              aria-haspopup="listbox"
+              aria-expanded={langOpen}
+              aria-label={t.nav.language}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              <Globe className="h-4 w-4 text-gold" />
+              <span className="uppercase">{locale}</span>
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${langOpen ? 'rotate-180' : ''}`} />
             </button>
+            {langOpen && (
+              <>
+                <div className="fixed inset-0 z-10" onClick={() => setLangOpen(false)} />
+                <ul role="listbox" className="absolute right-0 z-20 mt-2 w-40 overflow-hidden rounded-xl border border-white/10 bg-ink-3 py-1.5 shadow-2xl animate-fade-in">
+                  {LOCALES.map((l) => (
+                    <li key={l.key}>
+                      <button
+                        role="option"
+                        aria-selected={locale === l.key}
+                        onClick={() => {
+                          setLocale(l.key);
+                          setLangOpen(false);
+                        }}
+                        className={`flex w-full items-center justify-between px-4 py-2 text-sm transition-colors hover:bg-white/5 ${locale === l.key ? 'font-semibold text-gold' : 'text-white/80'}`}
+                      >
+                        {l.label}
+                        <span className="text-[10px] tracking-widest text-white/40">{l.short}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
+
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn btn-gold hidden !py-2.5 text-xs lg:inline-flex">
+            <Send className="h-4 w-4" />
+            {t.nav.order}
+          </a>
+
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
+            aria-label={open ? t.common.close : t.nav.menu}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#07070A] border-b border-white/5 animate-in slide-in-from-top duration-300">
-          <div className="px-4 pt-2 pb-6 space-y-3">
-            {navItems.map((item) => (
+      {/* Mobile menu */}
+      <div
+        className={`lg:hidden ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} fixed inset-x-0 top-[64px] bottom-0 z-40 bg-ink/95 backdrop-blur-xl transition-opacity duration-300`}
+      >
+        <div className="container-x flex h-full flex-col justify-between py-8">
+          <nav className="flex flex-col gap-2" aria-label="Mobile">
+            {nav.map((item, i) => (
               <Link
-                key={item.name}
-                href={item.path}
-                onClick={() => setIsOpen(false)}
-                className="block text-base font-medium text-gray-300 hover:text-[#C8A951] hover:bg-white/5 px-3 py-2.5 rounded-lg transition-colors"
+                key={item.href}
+                href={item.href}
+                className={`flex items-center justify-between border-b border-white/5 py-4 font-display text-2xl font-semibold transition-colors ${isActive(item.href) ? 'text-gold' : 'text-white'}`}
               >
                 {item.name}
+                <span className="text-xs tracking-[0.3em] text-white/30">0{i + 1}</span>
               </Link>
             ))}
-            <div className="pt-4 border-t border-white/5 px-3">
-              <a
-                href="https://t.me/maxmile_oil_bot"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center space-x-2 text-sm font-semibold uppercase tracking-wider bg-[#C8A951] text-black w-full py-3 rounded-lg font-bold"
-              >
-                <MessageSquare className="w-4 h-4 text-black" />
-                <span>{t.products.order}</span>
-              </a>
-            </div>
+          </nav>
+          <div className="space-y-3">
+            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn btn-gold w-full">
+              <Send className="h-4 w-4" /> {t.nav.order}
+            </a>
+            <a href={`tel:${PHONE}`} className="btn btn-outline w-full">
+              <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
+            </a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };

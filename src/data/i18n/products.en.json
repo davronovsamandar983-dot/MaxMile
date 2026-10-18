@@ -1,0 +1,363 @@
+{
+  "ultra-0w-20-sp": {
+    "tagline": "Fully synthetic oil for modern gasoline engines",
+    "description": "Fully Synthetic SAE 0W-20 Engine Oil is specifically designed for gasoline-powered passenger cars and light trucks. Formulated with a PAO (Polyalphaolefin) base and advanced additives, it delivers exceptional performance for modern gasoline engines. Certified with API SP and OEM technology, it provides superior protection, enhanced resistance to low-speed pre-ignition (LSPI), and ensures extended service life.",
+    "properties": [
+      "Provides exceptional wear protection",
+      "Ensures outstanding engine cleanliness",
+      "Enhances fuel efficiency and lowers pollutant emissions"
+    ]
+  },
+  "ultra-0w-30-sn-c2-c3": {
+    "tagline": "Fully synthetic long-life oil for extended intervals",
+    "description": "A fully synthetic, modern long-life engine oil designed for extended maintenance intervals. Suitable for gasoline engines with or without turbocharging and diesel pump-injector systems with DPF. Its synthetic base oil and advanced additives ensure low viscosity and high shear stability.",
+    "properties": [
+      "Provides superior wear protection",
+      "Ensures exceptional engine cleanliness",
+      "Enhances fuel efficiency while minimizing pollutant emissions"
+    ]
+  },
+  "ultra-0w-40-sp": {
+    "tagline": "Fully synthetic low-friction oil for all seasons",
+    "description": "Modern, fully synthetic, low-friction motor oil designed for all-season use. The advanced formulation combines unconventional synthetic-based oils with cutting-edge additive technology, ensuring low viscosity and exceptional shear stability. This motor oil effectively prevents deposit formation, minimizes frictional loss in the engine, and delivers optimal wear protection. It is recommended for gasoline engines, including those equipped with turbochargers and catalytic converters.",
+    "properties": [
+      "Superior wear protection",
+      "Exceptional engine cleanliness",
+      "Enhances fuel efficiency",
+      "Lowers pollutant emissions"
+    ]
+  },
+  "ultra-5w-30-sn-cf": {
+    "tagline": "Synthetic engine oil for passenger cars",
+    "description": "Synthetic SAE 5W-30 engine oil with API SN/CF performance from the ULTRA range. ULTRA is our high-quality passenger car engine oil, which effortlessly masters the balancing act of modern everyday engine life and the uses that we put our vehicles through.",
+    "properties": []
+  },
+  "ultra-5w-30-sn-c3": {
+    "tagline": "Low-ash synthetic oil for emission-control systems",
+    "description": "High-performance, low-viscosity engine oil crafted with advanced synthetic technology. This low-ash formula is specifically engineered to extend the lifespan and maintain the efficiency of Exhaust Emission Reduction Systems in both diesel and gasoline-powered vehicles. It provides enhanced engine performance, power reserves and a smoother, safer drive. Exceeds the most rigorous testing standards set by leading manufacturers.",
+    "properties": [
+      "Exceptional wear resistance for enhanced durability",
+      "Supports the efficiency of Exhaust Emission Reduction systems in both diesel and gasoline vehicles",
+      "Provides outstanding lubrication reliability for optimal performance"
+    ]
+  },
+  "ultra-5w-30-sn-a3-b4": {
+    "tagline": "Synthetic low-friction oil for demanding gasoline engines",
+    "description": "A high-tech synthetic, all-season, low-friction motor oil designed to meet the toughest demands of modern high-performance gasoline engines. This low-friction motor oil is engineered for vehicles requiring optimal performance without extended maintenance intervals. Tested and proven compatible with catalytic converters and turbochargers, it enhances fuel efficiency while delivering superior wear protection. Its advanced formulation benefits sealing materials, improving engine leak-tightness and ensuring reliable performance.",
+    "properties": [
+      "Outstanding engine performance",
+      "Exceptional engine cleanliness",
+      "Superior wear resistance",
+      "Effectively reduces frictional losses"
+    ]
+  },
+  "ultra-10w-60-sn-racing": {
+    "tagline": "Fully synthetic oil for extreme and race-track conditions",
+    "description": "A fully synthetic, high-performance engine oil designed for extreme operating conditions, including race track environments. Formulated with high-viscosity index base oils and advanced additive technology, it incorporates shear-stable polymers and an efficient detergent additive package to deliver reliable engine protection under the most severe conditions.",
+    "properties": [
+      "Provides exceptional protection against wear, rust, and corrosion, ensuring the long lifespan of moving parts",
+      "Features a precisely balanced detergent and dispersant system for maintaining a clean engine",
+      "Delivers outstanding thermal and oxidative stability for reliable performance"
+    ]
+  },
+  "ultra-15w-40-sl": {
+    "tagline": "Engine oil for gasoline-powered vehicles",
+    "description": "Engine oil specifically designed to extend the life and maintain the efficiency of Exhaust Emission Reduction Systems in gasoline-powered vehicles. Reach your destination faster and safer with optimal engine performance and power reserves. Meets and exceeds the rigorous testing standards set by leading manufacturers.",
+    "properties": [
+      "Reduces frictional losses",
+      "Helps maintain the efficiency of exhaust emission reduction systems in gasoline vehicles",
+      "Provides excellent wear resistance"
+    ]
+  },
+  "ultra-20w-50-sl": {
+    "tagline": "Multigrade oil for both cold and hot conditions",
+    "description": "This engine oil is formulated with an advanced, improved wear protection formula. Experience enhanced safety and speed as you reach your destination with maximum engine performance and power reserves. The 20W-50 multigrade oil is designed to perform exceptionally in both cold and hot conditions. It exceeds the highest testing standards demanded by renowned manufacturers, delivering outstanding performance, superior protection, and exceptional durability under all operating conditions.",
+    "properties": [
+      "Excellent wear protection",
+      "Outstanding engine cleanliness",
+      "Supports optimal performance of exhaust emission reduction systems in gasoline vehicles"
+    ]
+  },
+  "power-5w-30-ck-4-e9": {
+    "tagline": "Low-friction diesel oil for modern high-output engines",
+    "description": "It is a high-performance, low-friction diesel engine oil specifically designed to meet the most demanding performance requirements of modern high-output engines. It minimizes oil thickening caused by soot accumulation and ensures optimum oil pressure and a stable lubricating film, even under critical operating conditions. Utilizing state-of-the-art additive technology combined with advanced unconventional base oils, it delivers exceptional low-friction and wear protection properties while enabling extended intervals between oil changes.",
+    "properties": [
+      "Enhanced thermal and oxidation stability",
+      "Promotes improved engine cleanliness and minimizes piston deposits",
+      "Provides exceptional protection against engine wear and bore polishing"
+    ]
+  },
+  "power-10w-40-ci-4-e4-e7": {
+    "tagline": "Semi-synthetic all-season diesel engine oil",
+    "description": "Semi-synthetic all-season high-performance engine oil with a premium additive package, designed for modern commercial vehicle diesel engines, both with and without turbochargers, compressors, SCR catalytic converters, and particle filters. Provides exceptional wear protection and significantly reduces internal engine friction, even under extreme operating conditions, thereby extending the service life of the engine. Suitable for vehicles requiring API CI-4 and ACEA E4 or E7 specifications as prescribed by the manufacturer.",
+    "properties": [
+      "Exceptional resistance to ageing",
+      "Superior viscosity stability",
+      "Excellent wear protection",
+      "Outstanding cleaning and dispersing properties",
+      "Prolongs engine and exhaust system lifespan",
+      "Reduces fuel consumption and lowers pollutant emissions"
+    ]
+  },
+  "power-15w-40-ch-4": {
+    "tagline": "Diesel engine oil for on- and off-highway use",
+    "description": "This diesel engine oil meets and exceeds the API CH-4 standard. It provides reliable protection for diesel engines, helping to extend engine life even under the most demanding on- and off-highway applications. Additionally, it delivers exceptional performance in modern, high-output, low-emission engines, including those equipped with Exhaust Gas Recirculation (EGR) and Aftertreatment Systems.",
+    "properties": [
+      "Enhanced thermal and oxidation stability",
+      "Promotes improved engine cleanliness and minimizes piston deposits",
+      "Provides excellent protection against engine wear and bore polishing"
+    ]
+  },
+  "power-15w-40-ci-4-e7": {
+    "tagline": "Shear-stable diesel oil for extended drain intervals",
+    "description": "This high-performance diesel engine oil meets and exceeds the API CI-4 standard and is available in a shear-stable viscosity grade. It contains an effective detergent-dispersant that ensures engines remain exceptionally clean. Additionally, it is fortified with oxidation and corrosion inhibitors, as well as foam inhibitors, to safeguard vital engine components from scuffing and wear while protecting bearings from corrosion.",
+    "properties": [
+      "Ensures smooth operation throughout extended drain intervals",
+      "Exceptional TBN retention effectively combats the harmful effects of corrosive exhaust gases, prolonging oil life",
+      "Provides superior protection against corrosive wear, enhancing engine durability and reliability"
+    ]
+  },
+  "power-sae-50-cf": {
+    "tagline": "High-viscosity monograde oil for severe heavy-duty service",
+    "description": "SAE 50 CF lubricant oil is a high-viscosity monograde engine oil designed for heavy-duty diesel engines operating under severe conditions. It provides excellent protection against wear, oxidation, and corrosion, ensuring optimal engine performance and longevity. This oil meets the API CF specification, making it suitable for older diesel engines with indirect injection and high-sulfur fuel. Ideal for use in commercial vehicles, construction equipment, and industrial machinery, SAE 50 CF offers reliable lubrication, thermal stability, and deposit control in high-temperature environments.",
+    "properties": [
+      "Premium high-viscosity monograde oil designed for robust heavy-duty performance",
+      "Effectively minimizes engine wear, ensuring extended component durability",
+      "Delivers exceptional resistance to oxidation, maintaining peak performance under high-temperature conditions",
+      "Efficiently reduces sludge and carbon deposits for a cleaner, more reliable engine"
+    ]
+  },
+  "power-sae-40-cf": {
+    "tagline": "Monograde oil for heavy-duty diesel engines",
+    "description": "SAE 40 CF lubricant oil is a monograde engine oil designed for heavy-duty diesel engines. It offers excellent wear protection, thermal stability, and deposit control, making it suitable for older diesel engines operating under tough conditions. Ideal for commercial vehicles, construction equipment, and industrial machinery.",
+    "properties": [
+      "High viscosity delivers superior lubrication even under extreme temperatures",
+      "Thermal stability safeguards engine components while maintaining peak performance",
+      "Sludge protection effectively combats sludge buildup and minimizes deposit formation",
+      "Fuel economy: reduces friction and wear for better efficiency",
+      "Engine cleanliness promotes a cleaner engine and prolongs its operational life"
+    ]
+  },
+  "mota-10w-40-sl-jaso-ma2": {
+    "tagline": "High-performance oil for 4-stroke motorcycles",
+    "description": "High-performance engine oil formulated from premium-quality mineral base oils and enhanced with an advanced additive package. Provides exceptional lubricating film adhesion and stability under all operating conditions, delivering superior wear protection, excellent noise and vibration damping, and smoother clutch engagement and gear shifting. Ideal for 4-stroke motorcycles, compatible with both wet and dry clutches.",
+    "properties": [
+      "Superior lubricating film stability",
+      "Excellent lubricating film adhesion",
+      "Enhanced friction performance",
+      "Outstanding wear protection",
+      "Exceptional damping properties"
+    ]
+  },
+  "mota-15w-40-sl-jaso-ma2": {
+    "tagline": "Heavy-duty motorcycle oil for wet clutches",
+    "description": "This heavy-duty motor oil is formulated with premium selected mineral oils, delivering exceptional engine performance and protection under all operating conditions. It ensures reliable lubrication, effective noise reduction, and minimal wear, while also supporting smooth clutch engagement, disengagement, and seamless gear shifting.",
+    "properties": [
+      "Designed specifically for wet clutches",
+      "Provides superior lubrication in all operating conditions",
+      "Ensures excellent shear stability",
+      "Offers outstanding wear resistance"
+    ]
+  },
+  "geara-atf-dex-iii": {
+    "tagline": "Synthetic automatic transmission fluid",
+    "description": "Advanced-generation automatic transmission fluid formulated with synthetic oils and cutting-edge high-performance additives. Its precision-engineered composition ensures exceptional ageing stability, superior wear protection, and perfectly balanced friction characteristics. Exceeds the specifications of numerous equipment and vehicle manufacturers, delivering flawless performance even under extreme conditions and wide temperature variations. Additionally, it is ideal for extended oil change intervals.",
+    "properties": [
+      "High and stable viscosity index",
+      "Extremely low pour point for enhanced performance",
+      "Superior ageing and thermal stability",
+      "Exceptional resistance to oxidation",
+      "Optimized friction characteristics for efficiency",
+      "Excellent wear protection for durability",
+      "Outstanding compatibility with various metals"
+    ]
+  },
+  "geara-atf-dex-vi": {
+    "tagline": "Latest-generation synthetic automatic transmission fluid",
+    "description": "High-performance automatic transmission fluid of the latest generation. Formulated with premium synthetic base oils and advanced high-performance additives, it delivers exceptional fluidity in low temperatures and outstanding thermal and oxidative stability. This ensures smooth and precise shifting under all operating conditions. Offering superior wear protection and long-lasting performance, it extends gearbox service life and supports prolonged oil change intervals.",
+    "properties": [
+      "Perfectly designed for wet clutch applications",
+      "Provides exceptional lubrication across all operating conditions",
+      "Ensures outstanding shear stability",
+      "Delivers superior wear resistance"
+    ]
+  },
+  "geara-75w-80-gl-4": {
+    "tagline": "Fully synthetic gear oil",
+    "description": "A fully synthetic, high-performance gear oil engineered for exceptional performance in demanding conditions. It offers excellent viscosity-temperature stability, superior shear resistance, and high load-bearing capacity, ensuring optimal lubrication and minimal wear, even in extreme temperatures or at service interval limits. Its excellent elastomer compatibility maintains seal integrity, prevents leaks, and ensures lasting reliability.",
+    "properties": [
+      "Exceptional shear stability",
+      "Superior load-bearing capacity",
+      "Excellent viscosity-temperature performance"
+    ]
+  },
+  "geara-80w-90-gl-4": {
+    "tagline": "EP gear oil for heavily loaded gears",
+    "description": "An Extreme Pressure (EP) gear oil specifically designed for heavily loaded gears, crafted from premium-quality mineral base oils and an advanced additive system. Ideal for automotive applications, including heavy-duty axles and final drives, this lubricant excels under extreme pressure and shock-loading conditions.",
+    "properties": [
+      "Outstanding shear stability",
+      "Superior rust and corrosion protection",
+      "Exceptional thermal stability and high-temperature resistance"
+    ]
+  },
+  "geara-75w-85-gl-4-gl-5": {
+    "tagline": "GEARA gear oil, SAE 75W-85 GL-4/GL-5",
+    "description": "A GEARA gear transmission oil of grade SAE 75W-85 for API GL-4/GL-5 applications. GEARA gear and ATF oils are specially formulated for maximum wear protection and extreme ageing stability with optimum power transmission.",
+    "properties": []
+  },
+  "geara-75w-gl-4": {
+    "tagline": "GEARA gear oil, SAE 75W GL-4",
+    "description": "A GEARA gear transmission oil of grade SAE 75W for API GL-4 applications. GEARA gear and ATF oils are specially formulated for maximum wear protection and extreme ageing stability with optimum power transmission.",
+    "properties": []
+  },
+  "geara-75w-140-gl-5": {
+    "tagline": "Premium gear oil for hypoid gears and heavy-duty systems",
+    "description": "75W-140 GL5 is a premium gear oil for automotive and industrial use, offering reliable performance across extreme temperatures. It meets API GL-5 standards, delivering superior protection against wear, rust, and corrosion for hypoid gears and heavy-duty systems. Its extreme pressure additives boost gear durability, while thermal stability ensures consistent performance under high heat. Perfect for manual transmissions, differentials, and heavy machinery, it enhances efficiency and extends equipment lifespan.",
+    "properties": [
+      "Superior protection against wear, rust and corrosion for hypoid gears and heavy-duty systems",
+      "Extreme-pressure additives boost gear durability",
+      "Thermal stability ensures consistent performance under high heat"
+    ]
+  },
+  "geara-cvt": {
+    "tagline": "Synthetic fluid for continuously variable transmissions",
+    "description": "Synthetic high-performance automatic transmission oil, specifically designed for use in continuously variable transmissions (CVT) with push belts or steel drive chains. Formulated with advanced, high-strength base oils and specialized additives, it ensures exceptional lubricating film stability, even under extreme loads and throughout the entire service interval. Its superior oxidation stability and resistance to ageing deliver consistent, optimal lubrication performance while effectively preventing wear, tear, and material fatigue.",
+    "properties": [
+      "Excellent, stable viscosity index",
+      "Superior ageing resistance",
+      "Extremely low pour point for enhanced performance",
+      "Exceptional oxidation stability"
+    ]
+  },
+  "freeza-concentrate": {
+    "tagline": "Nitrite-, amine- and phosphate-free coolant concentrate",
+    "description": "A nitrite, amine, and phosphate-free, cost-efficient coolant concentrate. It provides reliable protection against freezing, boiling, and corrosion, ensuring optimal performance in all operating conditions.",
+    "properties": [
+      "Provides effective long-term anti-corrosion support by protecting brass, cast iron, steel, solder, and copper components",
+      "Offers superior high-temperature protection for aluminium components"
+    ]
+  },
+  "freeza-premix-33": {
+    "tagline": "Economical corrosion inhibitor and antifreeze",
+    "description": "An economical corrosion inhibitor and antifreeze concentrate designed for radiators in water-cooled vehicles. It is free from phosphates, silicates, nitrites, amines, and nitrates. This antifreeze delivers exceptional frost and corrosion protection without causing any adverse effects on coolant hoses or gaskets.",
+    "properties": [
+      "Provides effective long-term anti-corrosion support by protecting brass, cast iron, steel, solder, and copper components",
+      "Offers superior high-temperature protection for aluminium components"
+    ]
+  },
+  "freeza-premix-50": {
+    "tagline": "High-performance coolant premix",
+    "description": "A high-performance inhibitor and anti-freeze designed for radiators in water-cooled vehicles, providing long-lasting protection for all engine and cooling system metals. This coolant premix is free from borates, phosphates, silicates, nitrites, amines, and nitrates. It delivers exceptional freezing, boiling, and corrosion protection.",
+    "properties": [
+      "Offers effective, long-term anti-corrosion protection for brass, cast iron, steel, solder, and copper components",
+      "Delivers exceptional high-temperature protection for aluminium components"
+    ]
+  },
+  "forsa-dot-4": {
+    "tagline": "Brake fluid for disc, drum, ABS and clutch systems",
+    "description": "FORSA DOT 4 brake fluid. FORSA brake fluids combine high stability and resistance to ageing for use in disc and drum brake systems, also with ABS and clutch systems of motor vehicles.",
+    "properties": [
+      "Outstanding thermal stability",
+      "Outstanding long-term stability",
+      "High ageing resistance",
+      "Outstanding wear protection",
+      "Outstanding protection against corrosion",
+      "High material compatibility"
+    ]
+  },
+  "forsa-dot-3": {
+    "tagline": "Brake fluid for disc, drum, ABS and clutch systems",
+    "description": "FORSA DOT 3 brake fluid. FORSA brake fluids combine high stability and resistance to ageing for use in disc and drum brake systems, also with ABS and clutch systems of motor vehicles.",
+    "properties": [
+      "Outstanding shear stability",
+      "Superior rust and corrosion protection",
+      "Exceptional thermal stability and high-temperature resistance"
+    ]
+  },
+  "hydra-hlp-32": {
+    "tagline": "High-performance hydraulic oil",
+    "description": "This high-performance hydraulic oil is formulated from premium-quality raffinates. Its superior thermal stability ensures excellent resistance to ageing, even under high working temperatures. This greatly minimizes sludge formation, enhances system cleanliness, and boosts the reliability of hydraulic systems. The oil’s exceptional oxidation resistance and highly effective anti-wear components perform reliably under all load conditions, enabling extended service intervals.",
+    "properties": [
+      "Outstanding thermal stability",
+      "Excellent long-term stability",
+      "High ageing resistance"
+    ]
+  },
+  "hydra-hlp-68": {
+    "tagline": "High-performance hydraulic oil",
+    "description": "This high-performance hydraulic oil, derived from premium raffinates, offers exceptional thermal stability for superior ageing resistance under high temperatures. It minimizes sludge formation, enhances system cleanliness, and ensures hydraulic system reliability. Its excellent oxidation resistance and active anti-wear components support extended service intervals. Additionally, its strong anti-corrosion properties, even in the presence of water, provide optimal protection for hydraulic components in all conditions.",
+    "properties": [
+      "Outstanding shear stability",
+      "Superior rust and corrosion protection",
+      "Exceptional thermal stability and high-temperature resistance"
+    ]
+  },
+  "hydra-hvlp-46": {
+    "tagline": "High-performance hydraulic oil",
+    "description": "This high-performance hydraulic oil, made from premium raffinates, offers excellent thermal stability and ageing resistance, even at elevated temperatures. It minimizes sludge formation, enhances system cleanliness, and boosts hydraulic system reliability. Its superior oxidation resistance and highly active anti-wear components ensure extended service intervals under all load conditions. Additionally, its strong anti-corrosion properties protect hydraulic components effectively, even in water exposure.",
+    "properties": [
+      "Exceptional thermal stability",
+      "Superior long-term performance",
+      "Excellent resistance to ageing",
+      "Advanced wear protection"
+    ]
+  },
+  "smoothe-li-ep2": {
+    "tagline": "Lithium-based extreme-pressure grease",
+    "description": "A high-performance lithium-based grease designed for extreme pressure (EP) applications. Provides excellent wear protection, water resistance, and long-lasting lubrication for automotive, industrial, and heavy-duty equipment. Ideal for bearings, chassis, and general machinery.",
+    "properties": [
+      "High load-bearing capacity",
+      "Water & rust resistance",
+      "Extended lubrication life"
+    ]
+  },
+  "smoothe-lc-40-ep-semi-syn": {
+    "tagline": "Fluid grease for centralized lubrication systems",
+    "description": "LC 40-EP-Semi Syn is a fluid grease for use in centralized lubrication systems on trucks and buses. It is based on highly refined mineral as well as selected synthetic base oils with extreme-pressure and other carefully selected additives to provide excellent protection in all conditions.",
+    "properties": [
+      "Suitable for heavy-duty machinery",
+      "Suitable for automotive components",
+      "Suitable for industrial equipment under high load and shock"
+    ]
+  },
+  "smoothe-l-100-ep-syn": {
+    "tagline": "Synthetic lithium grease for low temperatures and high speeds",
+    "description": "L 100-EP-Syn grease is a synthetic oil-based grease using lithium soap. Its unique thickener technology and low viscosity oil (PAO), provide excellent lubrication performance at low temperatures down to -50°C and extremely high speeds.",
+    "properties": [
+      "Suitable for high-speed and high-load bearings",
+      "Suitable for food-grade equipment (if NSF-certified)",
+      "Suitable for extreme environments: high heat, moisture or corrosive conditions"
+    ]
+  },
+  "addit-oil-system-cleaner": {
+    "tagline": "Engine oil treatment and lubrication booster",
+    "description": "Engine Oil Treatment is a lubrication booster and oil stabilizer which adds extra protection against wear and viscosity breakdown of any engine oil to which it is added. It contains a powerful friction-reducing metal conditioner and a blend of anti-oxidant and corrosion-inhibiting additives that help protect bearings from corrosion and wear.",
+    "properties": [
+      "Enhances ring sealing for improved compression and minimized blow-by",
+      "Boosts oil viscosity for optimal engine performance",
+      "Reduces engine friction and wear for extended longevity",
+      "Delivers superior protection for heavily loaded engines",
+      "Strengthens resistance to oxidation and thermal breakdown"
+    ]
+  },
+  "addit-engine-transmission-cleaner": {
+    "tagline": "Engine and transmission system cleaner",
+    "description": "Engine & Transmission System Cleaner is a technologically advanced chemical carefully balanced to help clean and protect internal surfaces with a low-friction lubricating film. It removes accumulated deposits that form throughout the oil/fluid passageway system to help improve fluid circulation. This product boosts the oil/fluid’s resistance to corrosion and wear of vital parts. A metal conditioner is also added to reduce system friction and to protect moving parts.",
+    "properties": [
+      "Effectively removes resin and sludge buildup",
+      "Delivers enhanced lubrication during cleaning",
+      "Cleans and revitalizes seals for improved performance",
+      "Restores optimal fluid flow efficiency"
+    ]
+  },
+  "addit-fuel-system-cleaner": {
+    "tagline": "Fast-acting fuel system cleaner",
+    "description": "Fuel System Cleaner is a fast-acting blend of cleaners and detergents that you pour right into the gas tank to boost performance and gas mileage. It removes deposits in combustion chambers, intake manifolds, ports, and valves and restores flow in fuel injectors. With regular use, it keeps the entire fuel system clean and operating at peak performance, helping fuel to burn completely and cleanly, reducing emissions.",
+    "properties": [
+      "Restores engine performance loss due to dirty fuel system",
+      "Improves fuel combustion",
+      "Cleans fuel injectors",
+      "Cleans carburettors"
+    ]
+  }
+}

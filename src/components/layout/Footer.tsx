@@ -2,105 +2,106 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useLanguage } from '../../context/LanguageContext';
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { MapPin, Phone, Mail, Send, Clock, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { LINES } from '@/data/catalog';
+import { ADDRESS, EMAIL, MANUFACTURER, MANUFACTURER_LOCATION, MANUFACTURER_SITE, MAP_URL, PHONE, PHONE_DISPLAY, TELEGRAM_BOT_USERNAME, TELEGRAM_URL } from '@/lib/site';
 
 export const Footer: React.FC = () => {
-  const { t } = useLanguage();
-
-  const currentYear = new Date().getFullYear();
+  const { t, locale } = useLanguage();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#040406] border-t border-white/5 pt-16 pb-8 text-gray-400">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Brand Column */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold tracking-widest text-white">
-                MAX<span className="text-[#C8A951]">MILES</span>
-              </span>
-              <span className="text-[10px] bg-[#C8A951]/10 text-[#C8A951] px-1.5 py-0.5 rounded font-medium border border-[#C8A951]/20">
-                LUBRICANTS
-              </span>
+    <footer className="relative border-t border-white/5 bg-[#040406] text-white/60">
+      <div className="hairline absolute inset-x-0 top-0" />
+      <div className="container-x pt-16 pb-8">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.3fr]">
+          {/* Brand */}
+          <div className="space-y-5">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <Image src="/logo-wordmark.png" alt="MaxMiles" width={635} height={131} className="h-8 w-auto" />
+              <span className="rounded border border-gold/25 bg-gold/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.2em] text-gold">LUBRICANTS</span>
             </Link>
-            <p className="text-sm leading-relaxed max-w-xs text-gray-500">
-              {t.footer.desc}
-            </p>
+            <p className="max-w-sm text-sm leading-relaxed text-white/50">{t.footer.desc}</p>
+            <div className="rounded-xl border border-white/5 bg-white/[0.02] p-4 text-xs">
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-white/35">{t.footer.manufacturer}</span>
+              <span className="mt-1 block font-semibold text-white/85">{MANUFACTURER}</span>
+              <span className="block text-white/45">{MANUFACTURER_LOCATION[locale]}</span>
+              <a href={MANUFACTURER_SITE} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-1 text-gold hover:underline">
+                maxmilesoil.com <ArrowUpRight className="h-3 w-3" />
+              </a>
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h4 className="text-white text-sm font-semibold tracking-wider uppercase mb-6">{t.footer.quickLinks}</h4>
-            <ul className="space-y-3.5">
-              <li>
-                <Link href="/" className="text-sm hover:text-[#C8A951] transition-colors flex items-center group">
-                  <ArrowRight className="w-3.5 h-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-all text-[#C8A951]" />
-                  {t.nav.home}
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="text-sm hover:text-[#C8A951] transition-colors flex items-center group">
-                  <ArrowRight className="w-3.5 h-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-all text-[#C8A951]" />
-                  {t.nav.products}
-                </Link>
-              </li>
-              <li>
-                <Link href="/#about" className="text-sm hover:text-[#C8A951] transition-colors flex items-center group">
-                  <ArrowRight className="w-3.5 h-3.5 mr-2 opacity-0 group-hover:opacity-100 transition-all text-[#C8A951]" />
-                  {t.nav.about}
-                </Link>
-              </li>
+            <h4 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.quickLinks}</h4>
+            <ul className="space-y-3 text-sm">
+              {[
+                { name: t.nav.home, href: '/' },
+                { name: t.nav.products, href: '/products' },
+                { name: t.nav.about, href: '/about' },
+                { name: t.nav.contact, href: '/contact' },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="transition-colors hover:text-gold">
+                    {l.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Categories Quick Links */}
+          {/* Lines */}
           <div>
-            <h4 className="text-white text-sm font-semibold tracking-wider uppercase mb-6">{t.categories.title}</h4>
-            <ul className="space-y-3.5">
-              <li>
-                <Link href="/products?cat=ULTRA" className="text-sm hover:text-[#C8A951] transition-colors flex items-center group">
-                  <span className="w-1.5 h-1.5 bg-[#3B82F6] rounded-full mr-2"></span>
-                  ULTRA - Passenger Car
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?cat=POWER" className="text-sm hover:text-[#C8A951] transition-colors flex items-center group">
-                  <span className="w-1.5 h-1.5 bg-[#EF4444] rounded-full mr-2"></span>
-                  POWER - Truck Oils
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?cat=GEARA" className="text-sm hover:text-[#C8A951] transition-colors flex items-center group">
-                  <span className="w-1.5 h-1.5 bg-[#F59E0B] rounded-full mr-2"></span>
-                  GEARA - Gear Oils
-                </Link>
-              </li>
+            <h4 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.lines}</h4>
+            <ul className="space-y-2.5 text-sm">
+              {LINES.map((line) => (
+                <li key={line.key}>
+                  <Link href={`/products?line=${line.key}`} className="group flex items-center gap-2 transition-colors hover:text-gold">
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ background: line.color }} />
+                    <span className="font-semibold text-white/80 group-hover:text-gold">{line.key}</span>
+                    <span className="hidden text-white/40 sm:inline">· {line.name[locale]}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contacts */}
-          <div className="space-y-5">
-            <h4 className="text-white text-sm font-semibold tracking-wider uppercase">{t.footer.contacts}</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start space-x-3 text-sm">
-                <MapPin className="w-4.5 h-4.5 text-[#C8A951] shrink-0 mt-0.5" />
-                <span className="text-gray-500">Toshkent sh., Yunusobod tumani, Markaziy ko\'cha, 12-uy</span>
+          <div>
+            <h4 className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-white">{t.footer.contacts}</h4>
+            <ul className="space-y-4 text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                <a href={MAP_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-white">
+                  {ADDRESS[locale]}
+                </a>
               </li>
-              <li className="flex items-center space-x-3 text-sm">
-                <Phone className="w-4.5 h-4.5 text-[#C8A951] shrink-0" />
-                <a href="tel:+998901234567" className="hover:text-white transition-colors text-gray-500">+998 (90) 123-45-67</a>
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 shrink-0 text-gold" />
+                <a href={`tel:${PHONE}`} className="transition-colors hover:text-white">{PHONE_DISPLAY}</a>
               </li>
-              <li className="flex items-center space-x-3 text-sm">
-                <Mail className="w-4.5 h-4.5 text-[#C8A951] shrink-0" />
-                <a href="mailto:info@maxmiles.uz" className="hover:text-white transition-colors text-gray-500">info@maxmiles.uz</a>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 shrink-0 text-gold" />
+                <a href={`mailto:${EMAIL}`} className="transition-colors hover:text-white">{EMAIL}</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Send className="h-4 w-4 shrink-0 text-gold" />
+                <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="transition-colors hover:text-white">@{TELEGRAM_BOT_USERNAME}</a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Clock className="h-4 w-4 shrink-0 text-gold" />
+                <span>{t.contact.hoursValue}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/5 text-center text-xs text-gray-600 flex flex-col sm:flex-row justify-between items-center">
-          <p>© {currentYear} MaxMiles Lubricants. {t.footer.rights}</p>
+        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-6 text-xs text-white/35 sm:flex-row">
+          <p>© {year} MaxMiles Lubricants. {t.footer.rights}</p>
+          <p className="tracking-wide">Every Drop for Every Mile</p>
         </div>
       </div>
     </footer>

@@ -1,85 +1,40 @@
-# MaxMiles Lubricants
+# MaxMiles Lubricants — maxmiles.uz
 
-Storefront for MaxMiles motor oils and lubricants — a trilingual product
-catalogue (Uzbek / Russian / English) with a Telegram-based ordering flow.
+MaxMiles motor moylari va moylash materiallari sayti: 9 yo'nalish, 39 mahsulot, uch til (O'zbekcha / Русский / English).
+Next.js 16 (App Router), React 19, Tailwind CSS v4. Bazasiz — katalog kod ichida.
 
-Built with Next.js 16 (App Router), React 19, Tailwind CSS v4 and Supabase.
-
-## Getting started
-
-Install dependencies and create your environment file:
+## Ishga tushirish
 
 ```bash
-npm install && cp .env.example .env.local
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Fill in the Supabase values (see [Environment](#environment)), then run the
-dev server:
+## Katalogni o'zgartirish
 
-```bash
-npm run dev
-```
-
-The site is served at http://localhost:3000.
-
-## Environment
-
-Both variables are required — `src/lib/supabase.ts` asserts them as
-non-null, so the app fails at startup if either is missing.
-
-| Variable | Where to find it |
+| Nima | Qayerda |
 |---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase dashboard → Project Settings → API |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase dashboard → Project Settings → API |
+| Mahsulotlar ro'yxati (nom, sinf, standart, qadoqlar, rasm) | `src/data/products.base.ts` |
+| Mahsulot matnlari (tagline, tavsif, xususiyatlar) | `src/data/i18n/products.{uz,ru,en}.json` — kalit = mahsulot `slug`i |
+| Yo'nalishlar (ULTRA, POWER, MOTA, GEARA, FREEZA, FORSA, HYDRA, SMOOTHE, ADDIT) | `src/data/catalog.ts` |
+| Sayt matnlari (uch tilda) | `src/lib/translations.ts` |
+| Telefon, manzil, e-pochta, Telegram | `src/lib/site.ts` |
+| Rasmlar | `public/products/<slug>.png`, `public/lines/`, `public/hero.jpg` |
 
-The anon key is safe to expose to the browser — it is protected by row level
-security on the Supabase side. Never put a service role key in a
-`NEXT_PUBLIC_` variable; anything with that prefix is bundled into the
-JavaScript the browser downloads.
+Yangi mahsulot qo'shish: `products.base.ts` ga qator, uch `products.*.json` ga shu `slug` bilan matn, rasmni `public/products/` ga.
+Sahifalar (`/products/<slug>`, sitemap) avtomatik yaratiladi.
 
-## Project layout
+## Muhit o'zgaruvchilari (ixtiyoriy)
 
-| Path | What lives there |
-|---|---|
-| `src/app/page.tsx` | Landing page — hero, category grid, why-us |
-| `src/app/products/` | Catalogue listing and `[slug]` detail pages |
-| `src/components/layout/` | `Header` (nav plus language switcher) and `Footer` |
-| `src/components/products/OrderModal.tsx` | Order form, submits to Supabase |
-| `src/context/LanguageContext.tsx` | Locale state, persisted to `localStorage` |
-| `src/lib/translations.ts` | All UI copy, keyed by locale |
-| `src/lib/supabase.ts` | Supabase client, `Product` / `Order` types, `CATEGORIES` |
+Qarang: `.env.example`. Hech biri majburiy emas.
 
-## Languages
+- `NEXT_PUBLIC_TELEGRAM_BOT_USERNAME` — buyurtma boti (sukut: `maxmile_oil_bot`).
+- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` — «Aloqa» formasi murojaatlarini Telegram'ga yuborish (faqat serverda).
+  O'rnatilmasa, forma foydalanuvchining Telegram'ini tayyor matn bilan ochadi.
 
-Three locales are supported: `uz` (default), `ru` and `en`. On first visit the
-locale is guessed from `navigator.language`; after that the choice is
-remembered in `localStorage` under `maxmiles-locale`.
+## Manba va mualliflik
 
-Copy is not fetched from anywhere — it lives in `src/lib/translations.ts`, so
-adding a string means adding it to all three objects in that file. Product
-names and descriptions are the exception: those are per-locale columns on the
-Supabase `products` table (`name_uz`, `name_ru`, `name_en`, and the matching
-`description_*` and `properties_*` columns).
-
-## Product categories
-
-The nine categories are defined as a constant in `src/lib/supabase.ts`, not in
-the database — each carries its own label per locale, an accent colour, an
-emoji and a background image from `public/`. A product joins a category
-through its `category` column, which holds one of the category keys:
-
-`ULTRA` (passenger car) · `POWER` (truck and bus) · `MOTA` (motorcycle) ·
-`GEARA` (gear) · `FREEZA` (antifreeze and coolant) · `FORSA` (brake fluid) ·
-`HYDRA` (hydraulic) · `SMOOTHE` (grease) · `ADDIT` (additives)
-
-Adding a category means editing that constant and dropping a matching
-`cat_*.jpg` into `public/`.
-
-## Scripts
-
-| Command | What it does |
-|---|---|
-| `npm run dev` | Development server with hot reload |
-| `npm run build` | Production build |
-| `npm run start` | Serve the production build |
-| `npm run lint` | ESLint, using `eslint-config-next` |
+Mahsulot ma'lumotlari va rasmlari MAX Oil and Lubricant FZ-LLC (BAA) rasmiy katalogi va maxmilesoil.com saytidan olingan.
+Shriftlar (Inter, Outfit) `public/fonts/` da o'z serverimizdan beriladi.
