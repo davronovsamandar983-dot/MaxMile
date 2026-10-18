@@ -22,7 +22,7 @@ export function ContactView() {
 
   return (
     <>
-      <PageHero eyebrow={c.eyebrow} title={c.title} subtitle={c.desc} />
+      <PageHero eyebrow={c.eyebrow} title={c.title} subtitle={c.desc} image="/featured/ultra-5w-30-sn-cf.png" imagePosition="object-[75%_50%]" />
       <section className="pb-28">
         <div className="container-x grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr]">
           <Reveal>

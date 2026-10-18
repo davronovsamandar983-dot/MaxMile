@@ -38,7 +38,7 @@ const uz = {
       items: [
         { eyebrow: 'Kuch va himoya uchun yaratilgan', title: '5W-30 SN/CF', desc: 'Yuqori samarali sintetik motor moyi — maksimal tejamkorlik va chidamlilik uchun.' },
         { eyebrow: 'Ishonishingiz mumkin bo\'lgan natija', title: 'ATF DEX VI', desc: 'Silliq o\'tish va uzoq muddatli himoya uchun sintetik avtomat uzatma suyuqligi.' },
-        { eyebrow: 'Og\'ir yuk uchun', title: 'POWER 5W-30 CK-4', desc: 'Zamonaviy yuk mashinalari va avtobuslar dvigatellari uchun kam ishqalanishli sintetik dizel moyi.' },
+        { eyebrow: 'Og\'ir yuk uchun', title: 'POWER 10W-40 CI-4', desc: 'Zamonaviy tijorat transporti dizel dvigatellari uchun yarim sintetik, barcha fasllarga mos dizel moyi.' },
       ],
     },
     whyUs: {
@@ -235,7 +235,7 @@ const ru: Dict = {
       items: [
         { eyebrow: 'Создано для мощности и защиты', title: '5W-30 SN/CF', desc: 'Высокоэффективное синтетическое моторное масло для максимальной экономичности и долговечности.' },
         { eyebrow: 'Результат, которому можно доверять', title: 'ATF DEX VI', desc: 'Синтетическая жидкость для АКПП — плавные переключения и долговременная защита.' },
-        { eyebrow: 'Для тяжёлых нагрузок', title: 'POWER 5W-30 CK-4', desc: 'Малозольное синтетическое дизельное масло для современных двигателей грузовиков и автобусов.' },
+        { eyebrow: 'Для тяжелых нагрузок', title: 'POWER 10W-40 CI-4', desc: 'Полусинтетическое всесезонное дизельное масло для современных дизельных двигателей коммерческого транспорта.' },
       ],
     },
     whyUs: {
@@ -430,7 +430,7 @@ const en: Dict = {
       items: [
         { eyebrow: 'Engineered for power & protection', title: '5W-30 SN/CF', desc: 'High-performance synthetic engine oil for maximum efficiency and durability.' },
         { eyebrow: 'Performance you can trust', title: 'ATF DEX VI', desc: 'Synthetic automatic transmission fluid for smooth shifting and long-lasting protection.' },
-        { eyebrow: 'Built for heavy duty', title: 'POWER 5W-30 CK-4', desc: 'Low-friction synthetic diesel oil for modern truck and bus engines.' },
+        { eyebrow: 'Built for heavy duty', title: 'POWER 10W-40 CI-4', desc: 'Semi-synthetic all-season diesel engine oil for modern commercial vehicles.' },
       ],
     },
     whyUs: {

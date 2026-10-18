@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight, Cog, Globe2, Leaf, Layers, Target, Eye } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { LINES, productsByLine } from '@/data/catalog';
+import { LINES, productsByLine, showcaseImage } from '@/data/catalog';
 import { MANUFACTURER, MANUFACTURER_LOCATION, MANUFACTURER_SITE } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
@@ -19,7 +19,7 @@ export function AboutView() {
 
   return (
     <>
-      <PageHero eyebrow={a.eyebrow} title={a.title} subtitle={a.intro} />
+      <PageHero eyebrow={a.eyebrow} title={a.title} subtitle={a.intro} image="/hero.jpg" imagePosition="object-[46%_52%]" imageShift />
 
       {/* Story */}
       <section className="relative pb-24">
@@ -97,8 +97,10 @@ export function AboutView() {
           <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {LINES.map((line, i) => (
               <Reveal key={line.key} delay={(i % 3) * 70}>
-                <Link href={`/products?line=${line.key}`} className="group card flex h-full items-start gap-4 rounded-2xl p-5">
-                  <span className="mt-1 h-10 w-1 shrink-0 rounded-full" style={{ background: line.color }} />
+                <Link href={`/products?line=${line.key}`} className="group card flex h-full items-center gap-5 rounded-2xl p-5">
+                  <span className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl" style={{ background: `radial-gradient(ellipse at 50% 70%, ${line.color}33, transparent 70%), #0e0e13` }}>
+                    <Image src={showcaseImage(line.key)} alt="" fill sizes="96px" className="object-contain p-1.5 transition-transform duration-500 group-hover:scale-110" />
+                  </span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center justify-between gap-3">
                       <span className="font-display text-xl font-semibold text-white group-hover:text-gold">{line.key}</span>
@@ -107,6 +109,7 @@ export function AboutView() {
                       </span>
                     </span>
                     <span className="mt-1 block text-sm text-white/55">{line.name[locale]}</span>
+                    <span className="mt-2 block h-0.5 w-8 rounded-full transition-all duration-300 group-hover:w-14" style={{ background: line.color }} />
                   </span>
                 </Link>
               </Reveal>

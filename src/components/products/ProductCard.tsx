@@ -17,16 +17,29 @@ export function ProductCard({ product, priority = false }: { product: Product; p
 
   return (
     <article className="group card relative flex h-full flex-col overflow-hidden rounded-2xl">
-      <Link href={`/products/${product.slug}`} className="relative block aspect-[4/3] overflow-hidden" aria-label={`${product.line} ${product.name}`}>
+      <Link href={`/products/${product.slug}`} className="relative block aspect-[5/4] overflow-hidden" aria-label={`${product.line} ${product.name}`}>
         <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 60%, ${line.color}26, transparent 62%), linear-gradient(180deg,#14141b,#0a0a0e)` }} />
-        <Image
-          src={product.image}
-          alt={`${product.line} ${product.name}`}
-          fill
-          priority={priority}
-          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className={`transition-transform duration-500 ease-out group-hover:scale-105 ${cover ? 'object-cover' : 'object-contain p-5'}`}
-        />
+        {cover ? (
+          <Image
+            src={product.image}
+            alt={`${product.line} ${product.name}`}
+            fill
+            priority={priority}
+            sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        ) : (
+          <div className="absolute inset-x-3 bottom-2 top-12">
+            <Image
+              src={product.image}
+              alt={`${product.line} ${product.name}`}
+              fill
+              priority={priority}
+              sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-contain drop-shadow-[0_18px_22px_rgba(0,0,0,.55)] transition-transform duration-500 ease-out group-hover:scale-105"
+            />
+          </div>
+        )}
         <span className="absolute left-3 top-3">
           <LineBadge line={product.line} />
         </span>

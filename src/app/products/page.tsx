@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <section className="pb-24 pt-32 sm:pt-40">
+    <section className="pb-24">
       <Suspense fallback={<div className="container-x py-40 text-center text-sm text-white/40">…</div>}>
         <ProductsBrowser />
       </Suspense>

@@ -6,7 +6,7 @@ import { Search, X, PackageSearch } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { LINES, PRODUCTS, isLineKey, productsByLine, type LineKey } from '@/data/catalog';
 import { ProductCard } from './ProductCard';
-import { SectionHeading } from '@/components/ui/SectionHeading';
+import { PageHero } from '@/components/ui/PageHero';
 
 export function ProductsBrowser() {
   const { t, locale } = useLanguage();
@@ -35,16 +35,18 @@ export function ProductsBrowser() {
   const activeLine = LINES.find((l) => l.key === active);
 
   return (
-    <div className="container-x">
-      <SectionHeading
-        as="h1"
+    <>
+      <PageHero
+        compact
         eyebrow={t.products.eyebrow}
         title={activeLine ? `${activeLine.key} — ${activeLine.name[locale]}` : t.products.title}
         subtitle={activeLine ? activeLine.desc[locale] : t.products.subtitle}
+        image="/featured/geara-atf-dex-vi.png"
+        imagePosition="object-[72%_50%]"
       />
-
+    <div className="container-x">
       {/* Controls */}
-      <div className="sticky top-[60px] z-30 -mx-4 mt-12 border-y border-white/5 bg-ink/90 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div className="sticky top-[60px] z-30 -mx-4 mt-0 border-y border-white/5 bg-ink/90 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
           <div className="relative w-full lg:max-w-sm">
             <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
@@ -123,5 +125,6 @@ export function ProductsBrowser() {
         </div>
       )}
     </div>
+    </>
   );
 }

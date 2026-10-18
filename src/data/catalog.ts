@@ -120,6 +120,20 @@ export const LINES: Line[] = [
 
 export const LINE_MAP: Record<LineKey, Line> = Object.fromEntries(LINES.map((l) => [l.key, l])) as Record<LineKey, Line>;
 
+/** Har bir yo'nalishning vizitka mahsuloti (kartalar va «Biz haqimizda» sahifasi uchun) */
+const SHOWCASE: Record<LineKey, string> = {
+  ULTRA: 'ultra-0w-20-sp',
+  POWER: 'power-10w-40-ci-4-e4-e7',
+  MOTA: 'mota-10w-40-sl-jaso-ma2',
+  GEARA: 'geara-atf-dex-vi',
+  FREEZA: 'freeza-concentrate',
+  FORSA: 'forsa-dot-4',
+  HYDRA: 'hydra-hlp-32',
+  SMOOTHE: 'smoothe-li-ep2',
+  ADDIT: 'addit-oil-system-cleaner',
+};
+export const showcaseImage = (key: LineKey): string => (PRODUCTS.find((p) => p.slug === SHOWCASE[key]) ?? PRODUCTS.find((p) => p.line === key)!).image;
+
 export const getProduct = (slug: string): Product | undefined => PRODUCTS.find((p) => p.slug === slug);
 export const productsByLine = (key: LineKey): Product[] => PRODUCTS.filter((p) => p.line === key);
 export const FEATURED: Product[] = PRODUCTS.filter((p) => p.featured);

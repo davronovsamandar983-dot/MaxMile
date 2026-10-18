@@ -13,7 +13,7 @@ import { LineBadge } from '@/components/ui/LineBadge';
 const CARDS = [
   { slug: 'ultra-5w-30-sn-cf', image: '/featured/ultra-5w-30-sn-cf.png', kind: 'photo' as const },
   { slug: 'geara-atf-dex-vi', image: '/featured/geara-atf-dex-vi.png', kind: 'photo' as const },
-  { slug: 'power-5w-30-ck-4-e9', image: '/products/power-5w-30-ck-4-e9.png', kind: 'cutout' as const },
+  { slug: 'power-10w-40-ci-4-e4-e7', image: '/products/power-10w-40-ci-4-e4-e7.webp', kind: 'cutout' as const },
 ];
 
 export function FeaturedSticky() {

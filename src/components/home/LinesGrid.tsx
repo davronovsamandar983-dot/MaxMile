@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { LINES, productsByLine } from '@/data/catalog';
+import { LINES, productsByLine, showcaseImage } from '@/data/catalog';
 import { Reveal } from '@/components/ui/Reveal';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
@@ -36,24 +36,33 @@ export function LinesGrid() {
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
                     <span
                       className="absolute left-4 top-4 rounded-full border px-2.5 py-1 text-[10px] font-bold tracking-[0.2em] backdrop-blur"
-                      style={{ color: line.color, borderColor: `${line.color}66`, background: `${line.color}22` }}
+                      style={{ color: line.color, borderColor: `${line.color}77`, background: `linear-gradient(${line.color}26, ${line.color}26), rgba(7,7,10,.72)` }}
                     >
                       {line.key}
                     </span>
-                  </div>
-                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5">
-                    <div>
-                      <h3 className="font-display text-xl font-semibold leading-tight text-white">{line.name[locale]}</h3>
-                      <p className="mt-1 text-xs text-white/55">
-                        {count} {t.lines.products}
-                      </p>
-                    </div>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 transition-all group-hover:border-gold group-hover:bg-gold group-hover:text-black">
+                    <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-ink/50 text-white/80 backdrop-blur transition-all group-hover:border-gold group-hover:bg-gold group-hover:text-black">
                       <ArrowUpRight className="h-4 w-4" />
                     </span>
+                    {/* mahsulot vizitkasi */}
+                    <div className="pointer-events-none absolute -bottom-1 right-3 h-[62%] w-[46%]">
+                      <Image
+                        src={showcaseImage(line.key)}
+                        alt=""
+                        fill
+                        sizes="200px"
+                        className="object-contain object-bottom drop-shadow-[0_16px_20px_rgba(0,0,0,.7)] transition-transform duration-500 ease-out group-hover:-translate-y-2 group-hover:scale-105"
+                      />
+                    </div>
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-5 pr-[52%]">
+                    <h3 className="font-display text-xl font-semibold leading-tight text-white">{line.name[locale]}</h3>
+                    <p className="mt-1 text-xs text-white/60">
+                      {count} {t.lines.products}
+                    </p>
                   </div>
                 </Link>
               </Reveal>
