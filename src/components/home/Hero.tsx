@@ -83,12 +83,12 @@ export function Hero() {
     <section className="bg-ink px-2 pt-[68px] sm:px-3 lg:px-4 lg:pt-[84px]">
       <div className="frame relative bg-carbon lg:min-h-[calc(100svh-100px)]">
         {/* Surat: mobil — yuqorida, desktop — o'ng tomonda */}
-        <div className="relative h-[48vh] min-h-[320px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[66%]">
-          <Image src="/hero.jpg" alt="MaxMiles SAE 0W-30 API SN" fill priority sizes="(min-width: 1024px) 66vw, 100vw" className="object-cover object-[50%_42%]" />
+        <div className="relative h-[48vh] min-h-[320px] overflow-hidden lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[66%]">
+          <Image src="/hero.jpg" alt="MaxMiles SAE 0W-30 API SN" fill priority sizes="(min-width: 1024px) 66vw, 100vw" className="animate-kenburns object-cover object-[50%_42%]" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,#0b0c0e_100%)] lg:bg-[linear-gradient(90deg,#0b0c0e_0%,rgba(11,12,14,.6)_22%,transparent_50%),linear-gradient(180deg,transparent_60%,rgba(11,12,14,.9)_100%)]" />
 
           {/* Suzuvchi karta */}
-          <div className="absolute right-4 top-4 hidden rounded-2xl border border-white/15 bg-black/35 p-4 backdrop-blur-xl sm:block lg:right-8 lg:top-8">
+          <div className="absolute right-4 top-4 hidden animate-pop rounded-2xl border border-white/15 bg-black/35 p-4 backdrop-blur-xl [animation-delay:900ms] sm:block lg:right-8 lg:top-8">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55">{h.madeIn}</p>
             <div className="mt-3 flex gap-5">
               {h.stats.slice(0, 3).map((s) => (
@@ -103,14 +103,14 @@ export function Hero() {
 
         <div className="relative flex flex-col px-5 pb-5 sm:px-8 lg:min-h-[calc(100svh-100px)] lg:justify-between lg:px-14 lg:pb-10 lg:pt-16">
           <div className="-mt-16 max-w-[38rem] lg:mt-0">
-            <span className="kicker">{h.kicker}</span>
+            <span className="kicker animate-rise">{h.kicker}</span>
             <h1 className="display mt-5 text-[3.2rem] italic leading-[0.92] sm:text-7xl xl:text-[6.2rem]">
-              <span className="block text-white">{h.line1}</span>
-              <span className="text-chrome block">{h.line2}</span>
-              <span className="text-gold-grad block">{h.line3}</span>
+              <span className="block animate-rise text-white [animation-delay:120ms]">{h.line1}</span>
+              <span className="text-chrome block animate-rise [animation-delay:240ms]">{h.line2}</span>
+              <span className="text-gold-grad block animate-rise [animation-delay:360ms]">{h.line3}</span>
             </h1>
-            <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-white/70 sm:text-lg">{h.subtitle}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <p className="mt-6 max-w-md animate-rise text-pretty text-base leading-relaxed text-white/70 [animation-delay:480ms] sm:text-lg">{h.subtitle}</p>
+            <div className="mt-8 flex animate-rise flex-wrap gap-3 [animation-delay:600ms]">
               <Link href="/products" className="btn btn-chrome">
                 {h.ctaCatalog}
                 <span className="btn-orb">
@@ -123,7 +123,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="mt-10 lg:mt-12 lg:max-w-4xl">
+          <div className="mt-10 animate-rise [animation-delay:750ms] lg:mt-12 lg:max-w-4xl">
             <HeroSearch />
           </div>
         </div>

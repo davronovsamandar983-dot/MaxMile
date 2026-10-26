@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { FloatingOrder } from '@/components/layout/FloatingOrder';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
@@ -50,8 +51,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="flex min-h-screen flex-col bg-ink font-sans text-white">
         <LanguageProvider>
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main id="main" className="flex-grow">{children}</main>
           <Footer />
+          <FloatingOrder />
         </LanguageProvider>
       </body>
     </html>

@@ -22,7 +22,7 @@ type Tile = {
 // Ishlab chiqaruvchining haqiqiy suratlari (maxmilesoil.com)
 const TILES: Tile[] = [
   { key: 'dexvi', slug: 'geara-atf-dex-vi', line: 'GEARA', image: '/featured/geara-atf-dex-vi.png', className: 'lg:col-span-2 lg:row-span-2 min-h-[380px] lg:min-h-[640px]', imgClass: 'object-cover object-[68%_50%]' },
-  { key: 'sncf', slug: 'ultra-5w-30-sn-cf', line: 'ULTRA', image: '/featured/ultra-5w-30-sn-cf.png', className: 'lg:col-span-2 min-h-[300px]', imgClass: 'object-cover object-[35%_50%]' },
+  { key: 'sncf', slug: 'ultra-5w-30-sn-cf', line: 'ULTRA', image: '/about-bottles.png', className: 'lg:col-span-2 min-h-[300px]', imgClass: 'object-cover object-[50%_60%]' },
   { key: 'dot4', slug: 'forsa-dot-4', line: 'FORSA', image: '/packs/dot4.png', cutout: true, className: 'min-h-[420px] lg:min-h-0' },
   { key: 'ep2', slug: 'smoothe-li-ep2', line: 'SMOOTHE', image: '/packs/grease-1kg.png', cutout: true, className: 'min-h-[420px] lg:min-h-0' },
 ];
@@ -54,18 +54,19 @@ export function NewPack() {
                       />
                     </div>
                   ) : (
-                    <>
+                    // Keng plitka: surat o'ng yarmida, matn chapda — ustma-ust tushmaydi
+                    <div className={`overflow-hidden ${i === 0 ? 'absolute inset-0' : 'relative h-60 w-full sm:absolute sm:inset-y-0 sm:left-[38%] sm:right-0 sm:h-auto sm:w-auto'}`}>
                       <Image
                         src={tile.image}
                         alt={text.title}
                         fill
-                        sizes={i === 0 ? '(min-width: 1024px) 50vw, 100vw' : '(min-width: 1024px) 50vw, 100vw'}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
                         className={`transition-transform duration-700 ease-out group-hover:scale-[1.04] ${tile.imgClass}`}
                       />
-                      <div className={`absolute inset-0 ${i === 0 ? 'bg-[linear-gradient(180deg,transparent_45%,rgba(0,0,0,.85))]' : 'bg-[linear-gradient(90deg,rgba(0,0,0,.9)_0%,rgba(0,0,0,.6)_45%,transparent_70%)]'}`} />
-                    </>
+                      <div className={`absolute inset-0 ${i === 0 ? 'bg-[linear-gradient(180deg,transparent_45%,rgba(0,0,0,.85))]' : 'bg-[linear-gradient(0deg,#131418_0%,transparent_45%)] sm:bg-[linear-gradient(90deg,#131418_0%,transparent_35%)]'}`} />
+                    </div>
                   )}
-                  <div className={`relative p-6 sm:p-8 ${tile.cutout ? 'pt-2 sm:pt-3' : ''} ${i === 1 ? 'max-w-[62%] sm:max-w-[55%]' : ''}`}>
+                  <div className={`relative p-6 sm:p-8 ${tile.cutout ? 'pt-2 sm:pt-3' : ''} ${i === 1 ? 'sm:max-w-[48%]' : ''}`}>
                     <span className="flex items-center gap-2 font-display text-[11px] font-extrabold italic uppercase tracking-[0.2em] text-white/70">
                       <span className="h-3 w-1.5 -skew-x-[24deg]" style={{ background: LINE_MAP[tile.line].color }} />
                       {tile.line}

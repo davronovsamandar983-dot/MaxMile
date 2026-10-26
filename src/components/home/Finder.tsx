@@ -19,10 +19,10 @@ const PHOTOS: Record<FinderKey, string> = {
   fluids: '/lines/freeza.jpg',
 };
 
-function MiniProduct({ p }: { p: Product }) {
+function MiniProduct({ p, className = '' }: { p: Product; className?: string }) {
   const line = LINE_MAP[p.line];
   return (
-    <Link href={`/products/${p.slug}`} className="group flex items-center gap-4 rounded-2xl bg-white p-2.5 pr-4 shadow-[0_1px_0_rgba(0,0,0,.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-18px_rgba(0,0,0,.35)]">
+    <Link href={`/products/${p.slug}`} className={`group flex items-center gap-4 rounded-2xl bg-white p-2.5 pr-4 shadow-[0_1px_0_rgba(0,0,0,.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-18px_rgba(0,0,0,.35)] ${className}`}>
       <span className="studio relative h-16 w-16 shrink-0 overflow-hidden rounded-xl">
         <Image src={p.image} alt="" fill sizes="64px" className="object-cover transition-transform duration-500 group-hover:scale-110" />
       </span>
@@ -98,8 +98,8 @@ export function Finder() {
           {/* O'ng: mahsulotlar */}
           <div className="frame flex flex-col bg-paper-2 p-3 sm:p-6 lg:col-span-7">
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {primary.map((p) => (
-                <MiniProduct key={p.slug} p={p} />
+              {primary.map((p, i) => (
+                <MiniProduct key={p.slug} p={p} className={i >= 4 ? 'hidden sm:flex' : ''} />
               ))}
             </div>
 
@@ -107,8 +107,8 @@ export function Finder() {
               <>
                 <p className="mt-7 px-1 font-display text-xs font-bold uppercase italic tracking-[0.2em] text-black/50">{f.also}</p>
                 <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  {extras.map((p) => (
-                    <MiniProduct key={p.slug} p={p} />
+                  {extras.map((p, i) => (
+                    <MiniProduct key={p.slug} p={p} className={i >= 2 ? 'hidden sm:flex' : ''} />
                   ))}
                 </div>
               </>

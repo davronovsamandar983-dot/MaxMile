@@ -62,6 +62,10 @@ export const Header: React.FC = () => {
   );
 
   return (
+    <>
+    <a href="#main" className="sr-only z-[70] rounded-full bg-gold px-5 py-3 font-display text-sm font-bold text-black focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+      {t.home.misc.skip}
+    </a>
     <header className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500 ${solid ? 'border-b border-white/[0.07] bg-ink/80 backdrop-blur-xl' : 'border-b border-transparent bg-transparent'}`}>
       <div className="container-x flex h-16 items-center justify-between gap-6 lg:h-[76px]">
         <Link href="/" className="flex shrink-0 items-center" aria-label="MaxMiles Lubricants">
@@ -145,5 +149,6 @@ export const Header: React.FC = () => {
         </div>
       </div>
     </header>
+    </>
   );
 };

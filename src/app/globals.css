@@ -40,6 +40,9 @@
   --animate-fade-in: fade-in 0.6s ease-out both;
   --animate-marquee: marquee 38s linear infinite;
   --animate-shine: shine 3.2s ease-in-out infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.65, 0.2, 1) both;
+  --animate-kenburns: kenburns 2.6s cubic-bezier(0.2, 0.65, 0.2, 1) both;
+  --animate-pop: pop 0.5s cubic-bezier(0.2, 0.65, 0.2, 1) both;
 
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(10px); }
@@ -48,6 +51,18 @@
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(32px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes kenburns {
+    from { transform: scale(1.12); opacity: 0.4; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(14px) scale(0.92); }
+    to { opacity: 1; transform: none; }
   }
   @keyframes shine {
     0%, 100% { opacity: 0.35; }

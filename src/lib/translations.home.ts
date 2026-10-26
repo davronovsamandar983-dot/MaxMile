@@ -140,7 +140,10 @@ const uz = {
     orderNote: "Buyurtma Telegram orqali — menejer narx va yetkazishni aniqlashtiradi.",
     photoReal: 'Ishlab chiqaruvchi surati',
     gallery: 'Rasmlar',
+    usedFor: 'Qayerda ishlatiladi',
+    copied: 'Havola nusxalandi',
   },
+  misc: { skip: "Asosiy qismga o'tish", order: 'Telegram orqali buyurtma' },
 };
 
 export type HomeDict = typeof uz;
@@ -284,7 +287,10 @@ const ru: HomeDict = {
     orderNote: 'Заказ через Telegram — менеджер уточнит цену и доставку.',
     photoReal: 'Фото производителя',
     gallery: 'Фото',
+    usedFor: 'Применение',
+    copied: 'Ссылка скопирована',
   },
+  misc: { skip: 'Перейти к содержимому', order: 'Заказать в Telegram' },
 };
 
 const en: HomeDict = {
@@ -426,7 +432,10 @@ const en: HomeDict = {
     orderNote: 'Orders via Telegram — our manager confirms price and delivery.',
     photoReal: "Manufacturer's photo",
     gallery: 'Photos',
+    usedFor: 'Used for',
+    copied: 'Link copied',
   },
+  misc: { skip: 'Skip to content', order: 'Order on Telegram' },
 };
 
 export const HOME: Record<'uz' | 'ru' | 'en', HomeDict> = { uz, ru, en };

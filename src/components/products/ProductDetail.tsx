@@ -1,14 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight, Check, ChevronRight, Phone, Send } from 'lucide-react';
+import { ArrowUpRight, Bike, Car, Check, ChevronRight, Cog, Droplets, Factory, Phone, Send, Share2, Truck, type LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { GALLERY, LINE_MAP, productHeadline, type Product } from '@/data/catalog';
+import { FINDER, GALLERY, LINE_MAP, productHeadline, type FinderKey, type Product } from '@/data/catalog';
 import { PHONE, PHONE_DISPLAY, telegramOrderUrl } from '@/lib/site';
 import { LineBadge } from '@/components/ui/LineBadge';
 import { ProductCard } from './ProductCard';
+
+const USE_ICONS: Record<FinderKey, LucideIcon> = { car: Car, truck: Truck, moto: Bike, gear: Cog, industry: Factory, fluids: Droplets };
 
 export function ProductDetail({ product, related }: { product: Product; related: Product[] }) {
   const { t, locale } = useLanguage();
@@ -19,6 +21,35 @@ export function ProductDetail({ product, related }: { product: Product; related:
   const images = [product.image, ...(GALLERY[product.slug] ?? [])];
   const [shown, setShown] = useState(0);
   const [pack, setPack] = useState(product.packs.includes('4 L') ? '4 L' : product.packs[0]);
+  const [copied, setCopied] = useState(false);
+  // Telefonda asosiy tugma ko'rinmay qolganda pastdagi buyurtma paneli chiqadi
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const [ctaHidden, setCtaHidden] = useState(false);
+  useEffect(() => {
+    const el = ctaRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([e]) => setCtaHidden(!e.isIntersecting && e.boundingClientRect.top < 0));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Mahsulot qaysi texnika uchun: «Moy tanlash» jadvalidan
+  const usedFor = FINDER.filter((f) => f.lines.includes(product.line) || f.extras.includes(product.slug)).map((f) => f.key);
+
+  const share = async () => {
+    const url = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: `MaxMiles ${product.line} ${product.name}`, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* foydalanuvchi bekor qildi */
+    }
+  };
 
   const specs = [
     { label: t.detail.specs.line, value: `${line.key} — ${line.name[locale]}` },
@@ -118,7 +149,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
               </div>
             </div>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <div ref={ctaRef} className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a href={telegramOrderUrl(product.slug)} target="_blank" rel="noreferrer" className="btn btn-gold flex-1">
                 <Send className="h-4 w-4" /> {t.detail.order} · {pack}
               </a>
@@ -126,7 +157,28 @@ export function ProductDetail({ product, related }: { product: Product; related:
                 <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
               </a>
             </div>
-            <p className="mt-3 text-xs text-white/40">{d.orderNote}</p>
+            <div className="mt-3 flex items-center justify-between gap-4">
+              <p className="text-xs text-white/40">{d.orderNote}</p>
+              <button onClick={share} className="link-arrow shrink-0 text-[11px] text-white/70 hover:text-white" aria-live="polite">
+                <Share2 className="h-3.5 w-3.5" /> {copied ? d.copied : t.detail.share}
+              </button>
+            </div>
+
+            {usedFor.length > 0 && (
+              <div className="mt-9">
+                <p className="font-display text-xs font-bold uppercase italic tracking-[0.2em] text-white/45">{d.usedFor}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {usedFor.map((k) => {
+                    const Icon = USE_ICONS[k];
+                    return (
+                      <Link key={k} href={`/products?use=${k}`} className="chip !py-2 !normal-case !tracking-normal transition-colors hover:!border-white/40 hover:!text-white">
+                        <Icon className="h-4 w-4 text-gold" /> {t.home.finder.tabs[k]}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <div className="mt-12 space-y-10">
               <section>
@@ -179,6 +231,27 @@ export function ProductDetail({ product, related }: { product: Product; related:
           </div>
         </section>
       )}
+
+      {/* Telefon: pastda doimiy buyurtma paneli */}
+      <div
+        className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-ink/90 px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 backdrop-blur-xl transition-transform duration-300 lg:hidden ${ctaHidden ? 'translate-y-0' : 'translate-y-full'}`}
+        aria-hidden={!ctaHidden}
+      >
+        <div className="flex items-center gap-3">
+          <span className="studio relative h-12 w-12 shrink-0 overflow-hidden rounded-xl">
+            <Image src={product.image} alt="" fill sizes="48px" className="object-cover" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="grade block truncate text-lg text-white">{big}</span>
+            <span className="block truncate text-[11px] text-white/50">
+              {product.line} · {pack}
+            </span>
+          </span>
+          <a href={telegramOrderUrl(product.slug)} target="_blank" rel="noreferrer" tabIndex={ctaHidden ? 0 : -1} className="btn btn-gold btn-sm shrink-0">
+            <Send className="h-4 w-4" /> {t.products.order}
+          </a>
+        </div>
+      </div>
     </>
   );
 }

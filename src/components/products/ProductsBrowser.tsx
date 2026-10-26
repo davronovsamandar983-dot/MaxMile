@@ -13,6 +13,21 @@ const PACKS = Array.from(new Set(PRODUCTS.flatMap((p) => p.packs)));
 
 const toggle = <T,>(list: T[], v: T) => (list.includes(v) ? list.filter((x) => x !== v) : [...list, v]);
 
+function FilterChip({ label, color, onRemove }: { label: string; color?: string; onRemove: () => void }) {
+  return (
+    <button
+      onClick={onRemove}
+      className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] py-1.5 pl-3 pr-2 text-xs font-semibold text-white transition-colors hover:border-white/40"
+    >
+      {color && <span className="h-2.5 w-1 -skew-x-[24deg]" style={{ background: color }} />}
+      {label}
+      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/10 text-white/60 group-hover:bg-white group-hover:text-black">
+        <X className="h-3 w-3" />
+      </span>
+    </button>
+  );
+}
+
 export function ProductsBrowser() {
   const { t, locale } = useLanguage();
   const c = t.home.catalog;
@@ -21,7 +36,11 @@ export function ProductsBrowser() {
   // Bosh sahifadagi qidiruvdan: ?use=car&q=5W-30
   const [query, setQuery] = useState(() => params.get('q') ?? '');
   const [bases, setBases] = useState<BaseOil[]>([]);
-  const [packs, setPacks] = useState<string[]>([]);
+  // Bosh sahifadagi qadoq shkalasidan: ?pack=20 L
+  const [packs, setPacks] = useState<string[]>(() => {
+    const p = params.get('pack');
+    return p && PACKS.includes(p) ? [p] : [];
+  });
   const [sheet, setSheet] = useState(false);
 
   // ?line=ULTRA (yangi) yoki ?cat=ULTRA (eski havolalar)
@@ -196,9 +215,28 @@ export function ProductsBrowser() {
         </aside>
 
         <div>
-          <p className="mb-5 text-sm text-white/45 lg:hidden" aria-live="polite">
+          <p className="mb-4 text-sm text-white/45 lg:hidden" aria-live="polite">
             {items.length} {t.products.count}
           </p>
+
+          {/* Tanlangan filtrlar — bitta bosish bilan olib tashlanadi */}
+          {(extraCount > 0 || query.trim() || !allOn) && (
+            <div className="mb-5 flex flex-wrap items-center gap-2">
+              <span className="mr-1 font-display text-[11px] font-bold uppercase italic tracking-[0.2em] text-white/40">{c.active}:</span>
+              {activeLine && <FilterChip label={activeLine.key} color={activeLine.color} onRemove={() => setLine(null)} />}
+              {use && <FilterChip label={t.home.finder.tabs[use.key]} onRemove={() => setLine(null)} />}
+              {query.trim() && <FilterChip label={`«${query.trim()}»`} onRemove={() => setQuery('')} />}
+              {bases.map((b) => (
+                <FilterChip key={b} label={t.products.base[b]} onRemove={() => setBases((v) => v.filter((x) => x !== b))} />
+              ))}
+              {packs.map((s) => (
+                <FilterChip key={s} label={s} onRemove={() => setPacks((v) => v.filter((x) => x !== s))} />
+              ))}
+              <button onClick={reset} className="ml-1 text-xs font-semibold text-gold hover:underline">
+                {c.clear}
+              </button>
+            </div>
+          )}
           {items.length === 0 ? (
             <div className="panel flex flex-col items-center px-6 py-20 text-center">
               <PackageSearch className="h-12 w-12 text-gold/70" />

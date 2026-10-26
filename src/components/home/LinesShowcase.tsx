@@ -30,7 +30,7 @@ export function LinesShowcase() {
           return (
             <Reveal key={line.key} delay={(i % 3) * 90} className="w-[78vw] shrink-0 snap-start sm:w-[46vw] lg:w-auto">
               <Link href={`/products?line=${line.key}`} className="group cut-corner relative block h-full overflow-hidden bg-graphite">
-                <div className="studio relative m-2 aspect-[16/12] overflow-hidden rounded-[1.4rem]">
+                <div className="studio relative m-2 aspect-[16/11] overflow-hidden rounded-[1.4rem]">
                   <Image
                     src={showcaseImage(line.key)}
                     alt={`MaxMiles ${line.key}`}
