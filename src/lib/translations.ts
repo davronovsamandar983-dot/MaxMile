@@ -1,3 +1,5 @@
+import { HOME } from './translations.home';
+
 export type Locale = 'uz' | 'ru' | 'en';
 
 export const LOCALES: { key: Locale; label: string; short: string }[] = [
@@ -197,6 +199,7 @@ const uz = {
       rights: 'Barcha huquqlar himoyalangan.',
       manufacturer: 'Ishlab chiqaruvchi',
     },
+    home: HOME.uz,
     common: { learnMore: "Batafsil", viewAll: "Barchasini ko'rish", order: 'Buyurtma berish', call: "Qo'ng'iroq", telegram: 'Telegram', close: 'Yopish', notFoundTitle: 'Sahifa topilmadi', notFoundDesc: "Siz qidirgan sahifa mavjud emas yoki ko'chirilgan.", goHome: 'Bosh sahifaga' },
 };
 
@@ -394,6 +397,7 @@ const ru: Dict = {
       rights: 'Все права защищены.',
       manufacturer: 'Производитель',
     },
+    home: HOME.ru,
     common: { learnMore: 'Подробнее', viewAll: 'Смотреть все', order: 'Заказать', call: 'Позвонить', telegram: 'Telegram', close: 'Закрыть', notFoundTitle: 'Страница не найдена', notFoundDesc: 'Страница, которую вы ищете, не существует или была перемещена.', goHome: 'На главную' },
 };
 
@@ -589,6 +593,7 @@ const en: Dict = {
       rights: 'All rights reserved.',
       manufacturer: 'Manufacturer',
     },
+    home: HOME.en,
     common: { learnMore: 'Learn more', viewAll: 'View all', order: 'Order now', call: 'Call', telegram: 'Telegram', close: 'Close', notFoundTitle: 'Page not found', notFoundDesc: 'The page you are looking for does not exist or has been moved.', goHome: 'Back to home' },
 };
 

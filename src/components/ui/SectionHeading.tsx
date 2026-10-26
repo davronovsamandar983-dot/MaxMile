@@ -1,24 +1,26 @@
 import React from 'react';
 
 type Props = {
-  eyebrow?: string;
+  kicker: string;
   title: string;
   subtitle?: string;
-  align?: 'center' | 'left';
+  /** Yorug' (paper) fondagi bo'lim uchun */
+  light?: boolean;
+  align?: 'left' | 'center';
   className?: string;
-  as?: 'h1' | 'h2';
+  children?: React.ReactNode;
 };
 
-export function SectionHeading({ eyebrow, title, subtitle, align = 'center', className = '', as = 'h2' }: Props) {
-  const Tag = as;
-  const centered = align === 'center';
+export function SectionHeading({ kicker, title, subtitle, light = false, align = 'left', className = '', children }: Props) {
+  const center = align === 'center';
   return (
-    <div className={`${centered ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'} ${className}`}>
-      {eyebrow && <span className={`eyebrow ${centered ? 'eyebrow--plain justify-center' : ''}`}>{eyebrow}</span>}
-      <Tag className="text-balance mt-4 font-display text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl">
-        {title}
-      </Tag>
-      {subtitle && <p className="mt-5 text-base leading-relaxed text-white/60 sm:text-lg">{subtitle}</p>}
+    <div className={`flex flex-col gap-6 ${center ? 'items-center text-center' : 'lg:flex-row lg:items-end lg:justify-between'} ${className}`}>
+      <div className={center ? 'max-w-3xl' : 'max-w-3xl'}>
+        <span className={`kicker ${light ? '!text-[#8a6d22]' : ''}`}>{kicker}</span>
+        <h2 className={`display mt-5 text-balance text-[2.15rem] sm:text-5xl lg:text-[3.6rem] ${light ? 'text-coal' : 'text-white'}`}>{title}</h2>
+        {subtitle && <p className={`mt-5 max-w-2xl text-pretty text-base leading-relaxed sm:text-lg ${light ? 'text-black/60' : 'text-white/60'} ${center ? 'mx-auto' : ''}`}>{subtitle}</p>}
+      </div>
+      {children}
     </div>
   );
 }

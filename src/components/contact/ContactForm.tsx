@@ -8,7 +8,7 @@ import { TELEGRAM_URL } from '@/lib/site';
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
 const inputCls =
-  'w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-gold disabled:opacity-50';
+  'w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3.5 text-sm text-white placeholder-white/30 outline-none transition-colors focus:border-gold disabled:opacity-50';
 
 export function ContactForm() {
   const { t } = useLanguage();
@@ -49,12 +49,12 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <span className="flex h-16 w-16 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300">
+        <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gold text-black">
           <CheckCircle2 className="h-8 w-8" />
         </span>
-        <h3 className="mt-6 font-display text-2xl font-semibold text-white">{f.successTitle}</h3>
+        <h3 className="display mt-6 text-3xl italic">{f.successTitle}</h3>
         <p className="mt-2 text-sm text-white/60">{f.successDesc}</p>
-        <button onClick={() => setStatus('idle')} className="btn btn-outline mt-8">
+        <button onClick={() => setStatus('idle')} className="btn btn-line mt-8">
           {f.again}
         </button>
       </div>
@@ -64,23 +64,23 @@ export function ContactForm() {
   return (
     <form onSubmit={submit} className="space-y-5" noValidate={false}>
       <div>
-        <h2 className="font-display text-2xl font-semibold text-white">{f.title}</h2>
+        <h2 className="display text-3xl italic">{f.title}</h2>
         <p className="mt-2 text-sm text-white/55">{f.desc}</p>
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <label className="block">
-          <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">{f.name}</span>
+          <span className="mb-2 block font-display text-[11px] font-bold uppercase italic tracking-[0.18em] text-white/50">{f.name}</span>
           <input name="name" value={data.name} onChange={onChange} required maxLength={80} autoComplete="name" disabled={status === 'sending'} placeholder={f.namePlaceholder} className={inputCls} />
         </label>
         <label className="block">
-          <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">{f.phone}</span>
+          <span className="mb-2 block font-display text-[11px] font-bold uppercase italic tracking-[0.18em] text-white/50">{f.phone}</span>
           <input name="phone" type="tel" value={data.phone} onChange={onChange} required minLength={7} maxLength={24} autoComplete="tel" inputMode="tel" disabled={status === 'sending'} placeholder={f.phonePlaceholder} className={inputCls} />
         </label>
       </div>
 
       <label className="block">
-        <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">{f.message}</span>
+        <span className="mb-2 block font-display text-[11px] font-bold uppercase italic tracking-[0.18em] text-white/50">{f.message}</span>
         <textarea name="message" value={data.message} onChange={onChange} required rows={5} maxLength={1000} disabled={status === 'sending'} placeholder={f.messagePlaceholder} className={`${inputCls} resize-none`} />
       </label>
 

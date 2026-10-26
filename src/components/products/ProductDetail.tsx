@@ -1,135 +1,184 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ArrowRight, Check, Phone, Send, ShieldCheck, PackageCheck, Info } from 'lucide-react';
+import { ArrowUpRight, Check, ChevronRight, Phone, Send } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { LINE_MAP, type Product } from '@/data/catalog';
-import { PHONE, telegramOrderUrl } from '@/lib/site';
+import { GALLERY, LINE_MAP, productHeadline, type Product } from '@/data/catalog';
+import { PHONE, PHONE_DISPLAY, telegramOrderUrl } from '@/lib/site';
 import { LineBadge } from '@/components/ui/LineBadge';
 import { ProductCard } from './ProductCard';
 
 export function ProductDetail({ product, related }: { product: Product; related: Product[] }) {
   const { t, locale } = useLanguage();
+  const d = t.home.detail;
   const line = LINE_MAP[product.line];
   const text = product.text[locale];
-  const cover = product.imageFit === 'cover';
+  const big = productHeadline(product);
+  const images = [product.image, ...(GALLERY[product.slug] ?? [])];
+  const [shown, setShown] = useState(0);
+  const [pack, setPack] = useState(product.packs.includes('4 L') ? '4 L' : product.packs[0]);
 
   const specs = [
     { label: t.detail.specs.line, value: `${line.key} — ${line.name[locale]}` },
     product.grade ? { label: t.detail.specs.grade, value: product.grade } : null,
     product.spec ? { label: t.detail.specs.spec, value: product.spec } : null,
     product.base ? { label: t.detail.specs.base, value: t.products.base[product.base] } : null,
+    { label: t.detail.packs, value: product.packs.join(' · ') },
   ].filter(Boolean) as { label: string; value: string }[];
 
   return (
-    <div className="container-x">
-      <Link href={`/products?line=${product.line}`} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white/70 transition-colors hover:border-gold/40 hover:text-gold">
-        <ArrowLeft className="h-4 w-4" /> {t.detail.back}
-      </Link>
+    <>
+      <div className="container-x">
+        <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-xs text-white/45">
+          <Link href="/" className="hover:text-white">{d.home}</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href="/products" className="hover:text-white">{t.nav.products}</Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link href={`/products?line=${product.line}`} className="hover:text-white">{product.line}</Link>
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-white/75">{product.name}</span>
+        </nav>
 
-      <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-        {/* Image */}
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-white/10 shadow-2xl sm:aspect-square">
-            <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 65%, ${line.color}33, transparent 60%), linear-gradient(180deg,#15151c,#08080b)` }} />
-            <div className="grid-noise absolute inset-0" />
-            <Image
-              src={product.image}
-              alt={`${product.line} ${product.name}`}
-              fill
-              priority
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className={cover ? 'object-cover' : 'animate-float object-contain p-8 sm:p-12'}
-            />
-            <span className="absolute left-5 top-5">
-              <LineBadge line={product.line} />
-            </span>
-          </div>
-        </div>
-
-        {/* Info */}
-        <div>
-          <span className="eyebrow">{line.name[locale]}</span>
-          <h1 className="mt-4 font-display text-4xl font-semibold leading-[1.02] tracking-tight text-white sm:text-5xl">
-            <span className="text-gold-gradient">{product.line}</span> {product.name}
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-white/70">{text.tagline}</p>
-
-          <dl className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {specs.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/40">{s.label}</dt>
-                <dd className="mt-1 text-sm font-semibold text-white">{s.value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <section className="mt-10">
-            <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              <Info className="h-4 w-4" /> {t.detail.description}
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-white/70">{text.description}</p>
-          </section>
-
-          {text.properties.length > 0 && (
-          <section className="mt-10">
-            <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              <ShieldCheck className="h-4 w-4" /> {t.detail.properties}
-            </h2>
-            <ul className="mt-4 space-y-3">
-              {text.properties.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-sm leading-relaxed text-white/75">
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold">
-                    <Check className="h-3 w-3" />
-                  </span>
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </section>
-          )}
-
-          <section className="mt-10">
-            <h2 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              <PackageCheck className="h-4 w-4" /> {t.detail.packs}
-            </h2>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {product.packs.map((p) => (
-                <span key={p} className="rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-white">
-                  {p}
-                </span>
-              ))}
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.08fr_1fr] lg:gap-16">
+          {/* Rasmlar */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <div className="studio frame relative aspect-square">
+              <Image
+                key={images[shown]}
+                src={images[shown]}
+                alt={`MaxMiles ${product.line} ${product.name}`}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="animate-fade-in object-cover"
+              />
+              <span className="absolute left-5 top-5">
+                <LineBadge line={product.line} />
+              </span>
+              {shown > 0 && (
+                <span className="absolute bottom-4 left-4 rounded-full bg-black/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/80 backdrop-blur">{d.photoReal}</span>
+              )}
             </div>
-          </section>
+            {images.length > 1 && (
+              <div className="mt-3 flex gap-3" role="tablist" aria-label={d.gallery}>
+                {images.map((src, i) => (
+                  <button
+                    key={src}
+                    role="tab"
+                    aria-selected={shown === i}
+                    onClick={() => setShown(i)}
+                    className={`studio relative h-20 w-20 overflow-hidden rounded-2xl border-2 transition-colors ${shown === i ? 'border-gold' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                  >
+                    <Image src={src} alt="" fill sizes="80px" className="object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
-          <div className="mt-10 flex flex-col gap-3 border-t border-white/8 pt-8 sm:flex-row">
-            <a href={telegramOrderUrl(product.slug)} target="_blank" rel="noreferrer" className="btn btn-gold flex-1">
-              <Send className="h-4 w-4" /> {t.detail.order}
-            </a>
-            <a href={`tel:${PHONE}`} className="btn btn-outline flex-1">
-              <Phone className="h-4 w-4" /> {t.detail.call}
-            </a>
+          {/* Ma'lumot */}
+          <div>
+            <p className="flex items-center gap-3 text-sm text-white/55">
+              <span className="h-1 w-8 -skew-x-[24deg]" style={{ background: line.color }} />
+              {line.name[locale]}
+            </p>
+            <h1 className="mt-4">
+              <span className="grade block text-[3.4rem] text-white sm:text-7xl">{big}</span>
+              <span className="mt-3 block font-display text-xl font-bold italic text-white/80 sm:text-2xl">
+                MaxMiles <span style={{ color: line.color }}>{product.line}</span> {big !== product.name ? product.name : ''}
+              </span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/65">{text.tagline}</p>
+
+            {product.spec && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {product.spec.split(' · ').map((s) => (
+                  <span key={s} className="chip">{s}</span>
+                ))}
+                {product.base && <span className="chip !border-gold/40 !text-gold">{t.products.base[product.base]}</span>}
+              </div>
+            )}
+
+            <div className="mt-9 border-t border-white/10 pt-7">
+              <p className="font-display text-xs font-bold uppercase italic tracking-[0.2em] text-white/45">{d.choosePack}</p>
+              <div className="mt-3 flex flex-wrap gap-2" role="radiogroup" aria-label={d.choosePack}>
+                {product.packs.map((p) => (
+                  <button
+                    key={p}
+                    role="radio"
+                    aria-checked={pack === p}
+                    onClick={() => setPack(p)}
+                    className={`min-w-[4.5rem] rounded-full border px-5 py-3 font-display text-base font-extrabold italic transition-colors ${pack === p ? 'border-gold bg-gold text-black' : 'border-white/15 text-white hover:border-white/40'}`}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a href={telegramOrderUrl(product.slug)} target="_blank" rel="noreferrer" className="btn btn-gold flex-1">
+                <Send className="h-4 w-4" /> {t.detail.order} · {pack}
+              </a>
+              <a href={`tel:${PHONE}`} className="btn btn-line sm:w-auto">
+                <Phone className="h-4 w-4" /> {PHONE_DISPLAY}
+              </a>
+            </div>
+            <p className="mt-3 text-xs text-white/40">{d.orderNote}</p>
+
+            <div className="mt-12 space-y-10">
+              <section>
+                <h2 className="kicker">{d.overview}</h2>
+                <p className="mt-4 text-base leading-relaxed text-white/70">{text.description}</p>
+                {text.properties.length > 0 && (
+                  <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {text.properties.map((p) => (
+                      <li key={p} className="flex items-start gap-3 rounded-2xl bg-graphite p-4 text-sm leading-relaxed text-white/75">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold text-black">
+                          <Check className="h-3.5 w-3.5" />
+                        </span>
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+
+              <section>
+                <h2 className="kicker">{d.specs}</h2>
+                <dl className="mt-4 divide-y divide-white/[0.08] border-y border-white/[0.08]">
+                  {specs.map((s) => (
+                    <div key={s.label} className="grid grid-cols-[40%_1fr] gap-4 py-3.5 text-sm">
+                      <dt className="text-white/45">{s.label}</dt>
+                      <dd className="font-semibold text-white">{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            </div>
           </div>
         </div>
       </div>
 
       {related.length > 0 && (
-        <section className="mt-24 border-t border-white/8 pt-16">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">{t.detail.related}</h2>
-            <Link href={`/products?line=${product.line}`} className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:underline">
-              {product.line} — {t.detail.allInLine} <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {related.map((p) => (
-              <ProductCard key={p.slug} product={p} />
-            ))}
+        <section className="mt-24 border-t border-white/[0.07] bg-carbon py-16 lg:py-20">
+          <div className="container-x">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="display text-3xl italic sm:text-4xl">{t.detail.related}</h2>
+              <Link href={`/products?line=${product.line}`} className="link-arrow text-gold">
+                {product.line} — {t.detail.allInLine} <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {related.map((p) => (
+                <ProductCard key={p.slug} product={p} />
+              ))}
+            </div>
           </div>
         </section>
       )}
-    </div>
+    </>
   );
 }

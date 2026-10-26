@@ -19,11 +19,12 @@ npm run lint
 | Mahsulotlar ro'yxati (nom, sinf, standart, qadoqlar, rasm) | `src/data/products.base.ts` |
 | Mahsulot matnlari (tagline, tavsif, xususiyatlar) | `src/data/i18n/products.{uz,ru,en}.json` — kalit = mahsulot `slug`i |
 | Yo'nalishlar (ULTRA, POWER, MOTA, GEARA, FREEZA, FORSA, HYDRA, SMOOTHE, ADDIT) | `src/data/catalog.ts` |
-| Sayt matnlari (uch tilda) | `src/lib/translations.ts` |
+| Sayt matnlari (uch tilda) | `src/lib/translations.ts`, bosh sahifa bo'limlari — `src/lib/translations.home.ts` |
 | Telefon, manzil, e-pochta, Telegram | `src/lib/site.ts` |
-| Rasmlar | `public/products/<slug>.png`, `public/lines/`, `public/hero.jpg` |
+| «Moy tanlash» (transport turi → seriya) | `FINDER` — `src/data/catalog.ts` |
+| Rasmlar | `public/products/v2/<slug>.webp` (760×760, yagona studiya foni), `public/lines/`, `public/featured/`, `public/hero.jpg` |
 
-Yangi mahsulot qo'shish: `products.base.ts` ga qator, uch `products.*.json` ga shu `slug` bilan matn, rasmni `public/products/` ga.
+Yangi mahsulot qo'shish: `products.base.ts` ga qator, uch `products.*.json` ga shu `slug` bilan matn, rasmni `public/products/v2/` ga (kvadrat, qora studiya fonida).
 Sahifalar (`/products/<slug>`, sitemap) avtomatik yaratiladi.
 
 ## Muhit o'zgaruvchilari (ixtiyoriy)
@@ -36,5 +37,6 @@ Qarang: `.env.example`. Hech biri majburiy emas.
 
 ## Manba va mualliflik
 
-Mahsulot ma'lumotlari va rasmlari MAX Oil and Lubricant FZ-LLC (BAA) rasmiy katalogi va maxmilesoil.com saytidan olingan.
-Shriftlar (Inter, Outfit) `public/fonts/` da o'z serverimizdan beriladi.
+Mahsulot ma'lumotlari MAX Oil and Lubricant FZ-LLC (BAA) rasmiy katalogidan olingan. Yangi qadoq rasmlari maxmilesoil.com dan:
+5W-30 SN/CF, ATF DEX VI, DOT 4, LI EP2 — haqiqiy suratlar; qolganlari shu studiya suratidagi qadoq shablonida (yorliq matni va seriya rangi almashtirilgan) tayyorlangan.
+Shriftlar (Inter, Exo 2) `public/fonts/` da o'z serverimizdan beriladi.

@@ -53,7 +53,7 @@ export default async function ProductPage({ params }: { params: Promise<Params> 
   };
 
   return (
-    <section className="pb-24 pt-28 sm:pt-36">
+    <section className="pt-24 sm:pt-32">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }} />
       <ProductDetail product={product} related={related} />
     </section>

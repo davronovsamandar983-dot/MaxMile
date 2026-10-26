@@ -36,7 +36,7 @@ export type Line = {
 
 export const LINES: Line[] = [
   {
-    key: 'ULTRA', color: '#3B82F6', image: '/lines/ultra.jpg',
+    key: 'ULTRA', color: '#14B8A6', image: '/lines/ultra.jpg',
     name: { uz: 'Yengil avtomobil moylari', ru: 'Масла для легковых автомобилей', en: 'Passenger car oils' },
     desc: {
       uz: "ULTRA — zamonaviy yengil avtomobil dvigatellari uchun yuqori sifatli motor moylari: kundalik shahar harakatidan tortib uzoq safarlargacha ishonchli himoya.",
@@ -45,7 +45,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'POWER', color: '#EF4444', image: '/lines/power.jpg',
+    key: 'POWER', color: '#3B82F6', image: '/lines/power.jpg',
     name: { uz: 'Yuk mashinasi va avtobus moylari', ru: 'Масла для грузовиков и автобусов', en: 'Truck & bus oils' },
     desc: {
       uz: "POWER — uzoq masofalarda tejamkorlik va ishonchlilik muhim bo'lgan tijorat transporti uchun, uzaytirilgan moy almashtirish oraliqlariga mo'ljallangan.",
@@ -54,7 +54,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'MOTA', color: '#22C55E', image: '/lines/mota.jpg',
+    key: 'MOTA', color: '#F97316', image: '/lines/mota.jpg',
     name: { uz: 'Mototsikl moylari', ru: 'Мотоциклетные масла', en: 'Motorcycle oils' },
     desc: {
       uz: "MOTA — yuqori aylanishli yengil dvigatellar uchun: ekstremal sharoitda ham optimal moylash, ho'l debriyaj va uzatmalar qutisi uchun mos.",
@@ -63,7 +63,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'GEARA', color: '#F59E0B', image: '/lines/geara.jpg',
+    key: 'GEARA', color: '#E11D48', image: '/lines/geara.jpg',
     name: { uz: 'Uzatma va ATF moylari', ru: 'Трансмиссионные масла и ATF', en: 'Gear & transmission oils' },
     desc: {
       uz: "GEARA — mexanik va avtomat uzatmalar qutilari, differensiallar va CVT uchun: maksimal yeyilishdan himoya va barqaror kuch uzatish.",
@@ -72,7 +72,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'FREEZA', color: '#06B6D4', image: '/lines/freeza.jpg',
+    key: 'FREEZA', color: '#84CC16', image: '/lines/freeza.jpg',
     name: { uz: 'Antifriz va sovutish suyuqliklari', ru: 'Антифризы и охлаждающие жидкости', en: 'Antifreeze & coolants' },
     desc: {
       uz: "FREEZA — barcha transport turlari uchun ko'p funksiyali sovutish suyuqliklari: muzlash, qaynash va korroziyadan ishonchli himoya.",
@@ -90,7 +90,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'HYDRA', color: '#F97316', image: '/lines/hydra.jpg',
+    key: 'HYDRA', color: '#F59E0B', image: '/lines/hydra.jpg',
     name: { uz: 'Gidravlik moylar', ru: 'Гидравлические масла', en: 'Hydraulic oils' },
     desc: {
       uz: "HYDRA — gidravlik tizimlarda kuchni yo'qotishsiz uzatish va tizimni optimal himoya qilish uchun ishlab chiqilgan.",
@@ -99,7 +99,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'SMOOTHE', color: '#EAB308', image: '/lines/smoothe.jpg',
+    key: 'SMOOTHE', color: '#38BDF8', image: '/lines/smoothe.jpg',
     name: { uz: 'Surkov moylari', ru: 'Пластичные смазки', en: 'Greases' },
     desc: {
       uz: "SMOOTHE — podshipniklar, shassi va sanoat uskunalari uchun litiyli EP surkov moylari: yuqori yuk, suv va zangdan himoya.",
@@ -108,7 +108,7 @@ export const LINES: Line[] = [
     },
   },
   {
-    key: 'ADDIT', color: '#F43F5E', image: '/lines/addit.jpg',
+    key: 'ADDIT', color: '#EC4899', image: '/lines/addit.jpg',
     name: { uz: "Qo'shimchalar", ru: 'Присадки', en: 'Additives' },
     desc: {
       uz: "ADDIT — dvigatel, uzatma va yoqilg'i tizimini tozalovchi hamda moy xususiyatlarini kuchaytiruvchi qo'shimchalar.",
@@ -138,3 +138,26 @@ export const getProduct = (slug: string): Product | undefined => PRODUCTS.find((
 export const productsByLine = (key: LineKey): Product[] => PRODUCTS.filter((p) => p.line === key);
 export const FEATURED: Product[] = PRODUCTS.filter((p) => p.featured);
 export const isLineKey = (v: string | null | undefined): v is LineKey => !!v && v in LINE_MAP;
+
+/** «Moy tanlash» bo'limi: transport turi → asosiy seriya(lar) va qo'shimcha tavsiya etiladigan mahsulotlar */
+export type FinderKey = 'car' | 'truck' | 'moto' | 'gear' | 'industry' | 'fluids';
+export const FINDER: { key: FinderKey; lines: LineKey[]; extras: string[] }[] = [
+  { key: 'car', lines: ['ULTRA'], extras: ['geara-atf-dex-vi', 'freeza-concentrate', 'forsa-dot-4', 'addit-fuel-system-cleaner'] },
+  { key: 'truck', lines: ['POWER'], extras: ['geara-80w-90-gl-4', 'geara-75w-140-gl-5', 'freeza-premix-50', 'smoothe-li-ep2'] },
+  { key: 'moto', lines: ['MOTA'], extras: ['forsa-dot-4', 'addit-fuel-system-cleaner', 'addit-oil-system-cleaner'] },
+  { key: 'gear', lines: ['GEARA'], extras: ['addit-engine-transmission-cleaner'] },
+  { key: 'industry', lines: ['HYDRA', 'SMOOTHE'], extras: ['power-15w-40-ci-4-e7', 'geara-80w-90-gl-4'] },
+  { key: 'fluids', lines: ['FREEZA', 'FORSA', 'ADDIT'], extras: [] },
+];
+
+/** Ishlab chiqaruvchining haqiqiy suratlari (maxmilesoil.com) — mahsulot sahifasida qo'shimcha rasm sifatida */
+export const GALLERY: Record<string, string[]> = {
+  'ultra-0w-30-sn-c2-c3': ['/products/v2/extra-ultra-0w-30-hero.webp'],
+  'ultra-5w-30-sn-cf': ['/featured/ultra-5w-30-sn-cf.png'],
+  'forsa-dot-4': ['/packs/dot4.png'],
+  'smoothe-li-ep2': ['/packs/grease-1kg.png'],
+};
+
+/** Kartadagi katta yozuv: SAE/ATF/DOT/ISO sinfi bo'lsa — sinf, aks holda mahsulot nomi */
+export const productHeadline = (p: ProductBase): string =>
+  p.grade && !/^\d+ ml$/.test(p.grade) && !p.grade.startsWith('NLGI') && p.grade !== 'Concentrate' && !p.grade.startsWith('Premix') ? p.grade : p.name;
