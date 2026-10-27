@@ -29,21 +29,21 @@ async function tg(method, params = {}) {
 }
 
 const COMMANDS = {
-  uz: [['start', 'Bosh menyu'], ['catalog', 'Mahsulotlar katalogi'], ['finder', 'Moy tanlash'], ['contact', 'Manzil va telefon'], ['help', 'Yordam']],
-  ru: [['start', 'Главное меню'], ['catalog', 'Каталог продукции'], ['finder', 'Подбор масла'], ['contact', 'Адрес и телефон'], ['help', 'Помощь']],
-  en: [['start', 'Main menu'], ['catalog', 'Product catalog'], ['finder', 'Oil finder'], ['contact', 'Address and phone'], ['help', 'Help']],
+  uz: [['start', 'Boshlash'], ['contact', 'Manzil va telefon'], ['catalog', 'Mahsulotlar'], ['help', 'Yordam']],
+  ru: [['start', 'Начать'], ['contact', 'Адрес и телефон'], ['catalog', 'Продукция'], ['help', 'Помощь']],
+  en: [['start', 'Start'], ['contact', 'Address and phone'], ['catalog', 'Products'], ['help', 'Help']],
 };
 
 const DESCRIPTION = {
-  uz: "MaxMiles Lubricants — BAAda ishlab chiqarilgan motor va transmissiya moylari, antifriz va texnik suyuqliklar.\n\nBu yerda savol berasiz, buyurtma qoldirasiz va mos moyni tanlaysiz — menejer shu chatda javob beradi.\n\n🌐 maxmiles.uz · 📞 +998 (95) 057-47-89",
-  ru: 'MaxMiles Lubricants — моторные и трансмиссионные масла, антифризы и технические жидкости производства ОАЭ.\n\nЗдесь можно задать вопрос, оставить заказ и подобрать масло — менеджер ответит в этом чате.\n\n🌐 maxmiles.uz · 📞 +998 (95) 057-47-89',
-  en: 'MaxMiles Lubricants — engine and gear oils, coolants and technical fluids made in the UAE.\n\nAsk a question, place an order or find the right oil — a manager replies in this chat.\n\n🌐 maxmiles.uz · 📞 +998 (95) 057-47-89',
+  uz: "MaxMiles Lubricants — BAAda ishlab chiqarilgan motor va transmissiya moylari, antifriz va texnik suyuqliklar.\n\nSavolingizni yozing yoki raqamingizni qoldiring — menejer shu chatda javob beradi.\n\n🌐 maxmiles.uz · 📞 +998 (95) 057-47-89",
+  ru: 'MaxMiles Lubricants — моторные и трансмиссионные масла, антифризы и технические жидкости производства ОАЭ.\n\nНапишите вопрос или оставьте номер — менеджер ответит в этом чате.\n\n🌐 maxmiles.uz · 📞 +998 (95) 057-47-89',
+  en: 'MaxMiles Lubricants — engine and gear oils, coolants and technical fluids made in the UAE.\n\nWrite your question or leave your number — a manager replies in this chat.\n\n🌐 maxmiles.uz · 📞 +998 (95) 057-47-89',
 };
 
 const SHORT = {
-  uz: 'MaxMiles motor moylari: savol, buyurtma va maslahat. maxmiles.uz',
-  ru: 'Масла MaxMiles: вопросы, заказы и подбор. maxmiles.uz',
-  en: 'MaxMiles oils: questions, orders and advice. maxmiles.uz',
+  uz: "MaxMiles motor moylari — menejer bilan to'g'ridan-to'g'ri aloqa. maxmiles.uz",
+  ru: 'Масла MaxMiles — прямая связь с менеджером. maxmiles.uz',
+  en: 'MaxMiles oils — talk to a manager directly. maxmiles.uz',
 };
 
 for (const lang of ['uz', 'ru', 'en']) {
@@ -54,6 +54,18 @@ for (const lang of ['uz', 'ru', 'en']) {
     await tg('setMyDescription', { description: DESCRIPTION[lang], ...scope });
     await tg('setMyShortDescription', { short_description: SHORT[lang], ...scope });
   }
+}
+// Menejer chatida o'z buyruqlari
+const admin = process.env.TELEGRAM_CHAT_ID?.trim();
+if (admin) {
+  await tg('setMyCommands', {
+    scope: { type: 'chat', chat_id: admin },
+    commands: [
+      { command: 'stop', description: 'Ochiq suhbatni tugatish' },
+      { command: 'help', description: 'Menejer rejimi — qanday ishlaydi' },
+      { command: 'id', description: 'Chat ID' },
+    ],
+  });
 }
 // Eski «Do'kon» tugmasi xodimlar paneliga ochilardi — endi oddiy buyruqlar menyusi
 await tg('setChatMenuButton', { menu_button: { type: 'commands' } });

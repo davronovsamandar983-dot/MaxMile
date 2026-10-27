@@ -37,14 +37,15 @@ Qarang: `.env.example`. Hech biri majburiy emas.
 
 ## Telegram bot (@maxmile_oil_bot)
 
-Mijozlar bilan aloqa boti saytning o'zida ishlaydi: `src/app/api/telegram/route.ts` (webhook) → `src/lib/bot.ts`.
+Faqat mijozlar bilan aloqa (savdo boshqa ilovada). Bot saytning o'zida ishlaydi: `src/app/api/telegram/route.ts` (webhook) → `src/lib/bot.ts`.
 
-- Mijoz botga yozgan hamma narsa (matn, rasm, ovozli xabar, fayl, telefon raqami) `TELEGRAM_CHAT_ID` chatiga keladi.
-  Menejer shu xabarga **Reply** qilsa, javob bot nomidan mijozga qaytadi. Baza yo'q: mijoz ID'si xabardagi `#id…` belgisida.
-- Saytdagi «Buyurtma» tugmalari botni mahsulot, qadoq va sayt tili bilan ochadi (`telegramOrderUrl` → `start=<slug>__<qadoq>__<til>`):
-  mijozga mahsulot kartasi, menejerga «Buyurtma so'rovi» boradi. «Aloqa» formasi ham shu chatga keladi.
-- Mijoz menyusi: Katalog, Moy tanlash, Raqamni yuborish, Aloqa (uz/ru/en — Telegram tiliga yoki sayt tiliga qarab).
-- `TELEGRAM_CHAT_ID` — menejerning shaxsiy chati yoki guruh (bir nechta menejer uchun). ID: botga `/id` yozing.
+- Mijoz botga yozgan hamma narsa (matn, rasm, ovozli xabar, fayl, «📱 Raqamni qoldirish») `TELEGRAM_CHAT_ID` chatiga keladi.
+- Menejer javobi: mijoz xabari ostidagi «💬 Javob yozish» suhbat ochadi (bot «🟢 Suhbat: …» xabarini qadaydi) —
+  keyin menejer oddiy yozaveradi, `/stop` yoki «⏹» tugatadi. Yoki istalgan mijoz xabariga **Reply**.
+  Baza yo'q: mijoz ID'si xabardagi `#id…` belgisida va tugmada, faol suhbat — qadalgan xabarda.
+- Saytdagi «Buyurtma / Telegram» tugmalari botni mahsulot, qadoq va sayt tili bilan ochadi (`telegramOrderUrl` → `start=<slug>__<qadoq>__<til>`):
+  mijozga mahsulot kartasi, menejerga «Saytdan, mahsulot bo'yicha» xabari. «Aloqa» formasi ham shu chatga keladi.
+- `TELEGRAM_CHAT_ID` — menejerning shaxsiy chati (yoki guruh: u yerda faqat Reply ishlaydi). ID: botga `/id` yozing.
 
 Ulash (token `.env.local` da): `node --env-file=.env.local scripts/telegram-setup.mjs --webhook` — buyruqlar, tavsif va
 webhook'ni (`https://www.maxmiles.uz/api/telegram`) o'rnatadi. Mahalliy sinov: `--polling` bilan webhook'ni o'chiring,

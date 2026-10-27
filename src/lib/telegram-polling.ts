@@ -15,6 +15,7 @@ export function startTelegramPolling() {
   void (async () => {
     const secret = await webhookSecret();
     let offset = 0;
+    let failures = 0;
     for (;;) {
       try {
         const res = await fetch(`https://api.telegram.org/bot${botToken()}/getUpdates`, {
@@ -39,9 +40,13 @@ export function startTelegramPolling() {
             body: JSON.stringify(update),
           }).catch((e) => console.warn('[telegram] local webhook failed', e));
         }
+        failures = 0;
       } catch (e) {
-        console.warn('[telegram] polling error', e);
-        await sleep(5_000);
+        // Internet uzilsa log to'lib ketmasin: bitta qisqa qator, kutish 5 s → 60 s gacha o'sadi
+        failures++;
+        const code = (e as { cause?: { code?: string } })?.cause?.code ?? (e as Error)?.message;
+        if (failures === 1 || failures % 10 === 0) console.warn(`[telegram] Telegram'ga ulanib bo'lmadi (${code}), qayta urinish… [${failures}]`);
+        await sleep(Math.min(60_000, 5_000 * failures));
       }
     }
   })();
