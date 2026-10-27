@@ -3,7 +3,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Send, Clock, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { ADDRESS, EMAIL, MAP_URL, PHONE, PHONE_DISPLAY, TELEGRAM_BOT_USERNAME, TELEGRAM_URL } from '@/lib/site';
+import { ADDRESS, EMAIL, MAP_URL, PHONE, PHONE_DISPLAY, TELEGRAM_BOT_USERNAME, telegramStartUrl } from '@/lib/site';
 import { PageHero } from '@/components/ui/PageHero';
 import { Reveal } from '@/components/ui/Reveal';
 import { ContactForm } from './ContactForm';
@@ -14,7 +14,7 @@ export function ContactView() {
 
   const rows = [
     { icon: Phone, label: c.phone, value: PHONE_DISPLAY, href: `tel:${PHONE}` },
-    { icon: Send, label: c.telegram, value: `@${TELEGRAM_BOT_USERNAME}`, href: TELEGRAM_URL, external: true },
+    { icon: Send, label: c.telegram, value: `@${TELEGRAM_BOT_USERNAME}`, href: telegramStartUrl(locale), external: true },
     { icon: Mail, label: c.email, value: EMAIL, href: `mailto:${EMAIL}` },
     { icon: MapPin, label: c.address, value: ADDRESS[locale], href: MAP_URL, external: true, cta: c.map },
     { icon: Clock, label: c.hours, value: c.hoursValue },

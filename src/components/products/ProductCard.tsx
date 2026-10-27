@@ -59,7 +59,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
             {t.products.details} <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
           <a
-            href={telegramOrderUrl(product.slug)}
+            href={telegramOrderUrl(product.slug, locale)}
             target="_blank"
             rel="noreferrer"
             className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-full bg-gold text-black transition-colors hover:bg-gold-light"

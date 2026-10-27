@@ -6,8 +6,14 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maxmile
 /** Telegram bot — buyurtma va murojaatlar. Vercel'da NEXT_PUBLIC_TELEGRAM_BOT_USERNAME bo'sh bo'lsa, sukut bo'yicha bot. */
 export const TELEGRAM_BOT_USERNAME = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME || 'maxmile_oil_bot';
 export const TELEGRAM_URL = `https://t.me/${TELEGRAM_BOT_USERNAME}`;
-/** Mahsulot bilan bog'langan buyurtma havolasi: bot `start` parametri orqali mahsulot slug'ini oladi */
-export const telegramOrderUrl = (slug?: string) => (slug ? `${TELEGRAM_URL}?start=${slug}` : TELEGRAM_URL);
+// Bot `start` parametri (faqat A-Z a-z 0-9 _ -, 64 belgigacha) — src/lib/bot.ts dagi parseStart o'qiydi:
+//   site__<til>                 — umumiy «Buyurtma / Telegram» tugmalari
+//   <slug>__<qadoq>__<til>      — mahsulot kartasi va sahifasi (qadoq bo'sh bo'lishi mumkin)
+/** Saytdan botga umumiy havola: bot mijozga sayt tilida javob beradi */
+export const telegramStartUrl = (locale: Locale) => `${TELEGRAM_URL}?start=site__${locale}`;
+/** Mahsulot bilan bog'langan buyurtma havolasi: bot mahsulot kartasini ko'rsatadi va menejerga so'rov yuboradi */
+export const telegramOrderUrl = (slug: string, locale: Locale, pack?: string) =>
+  `${TELEGRAM_URL}?start=${slug}__${pack ? pack.replace(/\s+/g, '').toLowerCase() : ''}__${locale}`;
 
 export const PHONE = '+998950574789';
 export const PHONE_DISPLAY = '+998 (95) 057-47-89';

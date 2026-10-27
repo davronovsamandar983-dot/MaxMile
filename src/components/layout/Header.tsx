@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, Send, Phone, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { LOCALES } from '@/lib/translations';
-import { TELEGRAM_URL, PHONE, PHONE_DISPLAY } from '@/lib/site';
+import { telegramStartUrl, PHONE, PHONE_DISPLAY } from '@/lib/site';
 import { LINES } from '@/data/catalog';
 
 export const Header: React.FC = () => {
@@ -90,7 +90,7 @@ export const Header: React.FC = () => {
             <Phone className="h-4 w-4 text-gold" /> {PHONE_DISPLAY}
           </a>
           <div className="hidden sm:block">{langSwitch}</div>
-          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn btn-gold btn-sm hidden lg:inline-flex">
+          <a href={telegramStartUrl(locale)} target="_blank" rel="noreferrer" className="btn btn-gold btn-sm hidden lg:inline-flex">
             <Send className="h-3.5 w-3.5" /> {t.nav.order}
           </a>
           <button
@@ -139,7 +139,7 @@ export const Header: React.FC = () => {
               <span className="text-xs uppercase tracking-[0.2em] text-white/40">{t.nav.language}</span>
               {langSwitch}
             </div>
-            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn btn-gold w-full">
+            <a href={telegramStartUrl(locale)} target="_blank" rel="noreferrer" className="btn btn-gold w-full">
               <Send className="h-4 w-4" /> {t.nav.order}
             </a>
             <a href={`tel:${PHONE}`} className="btn btn-line w-full">

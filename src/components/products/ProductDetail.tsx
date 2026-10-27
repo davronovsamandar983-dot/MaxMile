@@ -150,7 +150,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
             </div>
 
             <div ref={ctaRef} className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a href={telegramOrderUrl(product.slug)} target="_blank" rel="noreferrer" className="btn btn-gold flex-1">
+              <a href={telegramOrderUrl(product.slug, locale, pack)} target="_blank" rel="noreferrer" className="btn btn-gold flex-1">
                 <Send className="h-4 w-4" /> {t.detail.order} · {pack}
               </a>
               <a href={`tel:${PHONE}`} className="btn btn-line sm:w-auto">
@@ -247,7 +247,7 @@ export function ProductDetail({ product, related }: { product: Product; related:
               {product.line} · {pack}
             </span>
           </span>
-          <a href={telegramOrderUrl(product.slug)} target="_blank" rel="noreferrer" tabIndex={ctaHidden ? 0 : -1} className="btn btn-gold btn-sm shrink-0">
+          <a href={telegramOrderUrl(product.slug, locale, pack)} target="_blank" rel="noreferrer" tabIndex={ctaHidden ? 0 : -1} className="btn btn-gold btn-sm shrink-0">
             <Send className="h-4 w-4" /> {t.products.order}
           </a>
         </div>

@@ -7,7 +7,7 @@ import { ArrowRight, ArrowUpRight, Bike, Car, Cog, Droplets, Factory, MessageCir
 import { useLanguage } from '@/context/LanguageContext';
 import { FINDER, LINE_MAP, getProduct, productHeadline, productsByLine, type FinderKey, type Product } from '@/data/catalog';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { TELEGRAM_URL } from '@/lib/site';
+import { telegramStartUrl } from '@/lib/site';
 
 const ICONS: Record<FinderKey, LucideIcon> = { car: Car, truck: Truck, moto: Bike, gear: Cog, industry: Factory, fluids: Droplets };
 const PHOTOS: Record<FinderKey, string> = {
@@ -118,7 +118,7 @@ export function Finder() {
               <Link href={`/products?line=${entry.lines[0]}`} className="link-arrow text-coal">
                 {f.all} <ArrowRight className="h-4 w-4" />
               </Link>
-              <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn btn-ink btn-sm">
+              <a href={telegramStartUrl(locale)} target="_blank" rel="noreferrer" className="btn btn-ink btn-sm">
                 <MessageCircle className="h-4 w-4" /> {f.ask}
               </a>
             </div>

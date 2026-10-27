@@ -4,11 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Check, Download, Phone, Send } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { BROCHURE_URL, MANUFACTURER_SITE, PHONE, PHONE_DISPLAY, TELEGRAM_URL } from '@/lib/site';
+import { BROCHURE_URL, MANUFACTURER_SITE, PHONE, PHONE_DISPLAY, telegramStartUrl } from '@/lib/site';
 import { Reveal } from '@/components/ui/Reveal';
 
 export function OriginCta() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const o = t.home.origin;
   const c = t.home.cta;
 
@@ -63,7 +63,7 @@ export function OriginCta() {
           </h2>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-white/65 sm:text-lg">{c.desc}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer" className="btn btn-gold">
+            <a href={telegramStartUrl(locale)} target="_blank" rel="noreferrer" className="btn btn-gold">
               <Send className="h-4 w-4" /> {c.telegram}
             </a>
             <a href={`tel:${PHONE}`} className="btn btn-line">

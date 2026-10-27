@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Send } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
-import { TELEGRAM_URL } from '@/lib/site';
+import { telegramStartUrl } from '@/lib/site';
 
 /** Sahifa pastga aylantirilganda o'ng pastki burchakda chiqadigan Telegram tugmasi */
 export function FloatingOrder() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const pathname = usePathname();
   const [shown, setShown] = useState(false);
 
@@ -24,7 +24,7 @@ export function FloatingOrder() {
 
   return (
     <a
-      href={TELEGRAM_URL}
+      href={telegramStartUrl(locale)}
       target="_blank"
       rel="noreferrer"
       aria-label={t.home.misc.order}

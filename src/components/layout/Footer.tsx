@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { MapPin, Phone, Mail, Send, Clock, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { LINES } from '@/data/catalog';
-import { ADDRESS, EMAIL, MANUFACTURER, MANUFACTURER_LOCATION, MANUFACTURER_SITE, MAP_URL, PHONE, PHONE_DISPLAY, TELEGRAM_BOT_USERNAME, TELEGRAM_URL } from '@/lib/site';
+import { ADDRESS, EMAIL, MANUFACTURER, MANUFACTURER_LOCATION, MANUFACTURER_SITE, MAP_URL, PHONE, PHONE_DISPLAY, TELEGRAM_BOT_USERNAME, telegramStartUrl } from '@/lib/site';
 
 export const Footer: React.FC = () => {
   const { t, locale } = useLanguage();
@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
 
   const contacts = [
     { icon: Phone, label: PHONE_DISPLAY, href: `tel:${PHONE}` },
-    { icon: Send, label: `@${TELEGRAM_BOT_USERNAME}`, href: TELEGRAM_URL, external: true },
+    { icon: Send, label: `@${TELEGRAM_BOT_USERNAME}`, href: telegramStartUrl(locale), external: true },
     { icon: Mail, label: EMAIL, href: `mailto:${EMAIL}` },
     { icon: MapPin, label: ADDRESS[locale], href: MAP_URL, external: true },
     { icon: Clock, label: t.contact.hoursValue },

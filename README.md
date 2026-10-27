@@ -32,8 +32,23 @@ Sahifalar (`/products/<slug>`, sitemap) avtomatik yaratiladi.
 Qarang: `.env.example`. Hech biri majburiy emas.
 
 - `NEXT_PUBLIC_TELEGRAM_BOT_USERNAME` — buyurtma boti (sukut: `maxmile_oil_bot`).
-- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` — «Aloqa» formasi murojaatlarini Telegram'ga yuborish (faqat serverda).
-  O'rnatilmasa, forma foydalanuvchining Telegram'ini tayyor matn bilan ochadi.
+- `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` — Telegram bot (faqat serverda), pastga qarang.
+  O'rnatilmasa, «Aloqa» formasi foydalanuvchining Telegram'ini tayyor matn bilan ochadi.
+
+## Telegram bot (@maxmile_oil_bot)
+
+Mijozlar bilan aloqa boti saytning o'zida ishlaydi: `src/app/api/telegram/route.ts` (webhook) → `src/lib/bot.ts`.
+
+- Mijoz botga yozgan hamma narsa (matn, rasm, ovozli xabar, fayl, telefon raqami) `TELEGRAM_CHAT_ID` chatiga keladi.
+  Menejer shu xabarga **Reply** qilsa, javob bot nomidan mijozga qaytadi. Baza yo'q: mijoz ID'si xabardagi `#id…` belgisida.
+- Saytdagi «Buyurtma» tugmalari botni mahsulot, qadoq va sayt tili bilan ochadi (`telegramOrderUrl` → `start=<slug>__<qadoq>__<til>`):
+  mijozga mahsulot kartasi, menejerga «Buyurtma so'rovi» boradi. «Aloqa» formasi ham shu chatga keladi.
+- Mijoz menyusi: Katalog, Moy tanlash, Raqamni yuborish, Aloqa (uz/ru/en — Telegram tiliga yoki sayt tiliga qarab).
+- `TELEGRAM_CHAT_ID` — menejerning shaxsiy chati yoki guruh (bir nechta menejer uchun). ID: botga `/id` yozing.
+
+Ulash (token `.env.local` da): `node --env-file=.env.local scripts/telegram-setup.mjs --webhook` — buyruqlar, tavsif va
+webhook'ni (`https://www.maxmiles.uz/api/telegram`) o'rnatadi. Mahalliy sinov: `--polling` bilan webhook'ni o'chiring,
+`.env.local` ga `TELEGRAM_POLLING=1` yozing va `npm run dev` — bot kompyuterdan ishlaydi.
 
 ## Manba va mualliflik
 
