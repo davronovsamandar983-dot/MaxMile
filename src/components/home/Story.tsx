@@ -19,18 +19,30 @@ export function Story() {
   const [active, setActive] = useState(0);
   const refs = useRef<(HTMLLIElement | null)[]>([]);
 
+  // Faol bosqich — yuqori cheti ekran o'rtasidan o'tgan oxirgi bosqich.
+  // Elementlar har safar refs'dan o'qiladi: til almashganda ro'yxat qayta chizilsa ham ishlayveradi.
   useEffect(() => {
-    if (typeof IntersectionObserver === 'undefined') return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.index));
-        }
-      },
-      { rootMargin: '-45% 0px -45% 0px' },
-    );
-    refs.current.forEach((el) => el && io.observe(el));
-    return () => io.disconnect();
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const mid = window.innerHeight / 2;
+      let next = 0;
+      refs.current.forEach((el, i) => {
+        if (el && el.getBoundingClientRect().top <= mid) next = i;
+      });
+      setActive(next);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
   }, []);
 
   return (
@@ -74,11 +86,10 @@ export function Story() {
             const on = i === active;
             return (
               <li
-                key={item.title}
+                key={i}
                 ref={(el) => {
                   refs.current[i] = el;
                 }}
-                data-index={i}
                 className={`border-t border-white/10 py-10 transition-opacity duration-500 lg:flex lg:min-h-[46vh] lg:flex-col lg:justify-center lg:py-0 ${on ? 'lg:opacity-100' : 'lg:opacity-35'}`}
               >
                 {/* Mobil: har bosqichning o'z surati */}
